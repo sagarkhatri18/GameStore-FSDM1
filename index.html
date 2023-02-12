@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameStore</title>
+
+    <!--
+        Project Name: GameStore Online Gaming Platform
+        Author: Sagar Khatri and Basanta Shahi
+        Date: 12/01/2022
+        File Name: index.html
+    -->
+
+    <!-- SEO meta imports -->
+    <meta name="keywords" content="GameStore, Gaming, Electronics, Online, Play Ststion, xbox">
+    <meta name="description" content="Online gaming site with lot of funs including everyday flash sale">
+    <meta name="author" content="Sagar Khatri, Basanta Shahi">
+
+    <!-- linking to the google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- importing required fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,200;1,300&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <!-- linking to the font awesome link for website icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <!-- importing grid-framework.css -->
+    <link rel="stylesheet" href="assets/css/grid.css">
+
+    <!-- importing style.css -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- importing js -->
+    <script src="script.js"></script>
+</head>
+
+<!-- body opens -->
+
+<body id="home_section">
+    <!-- navigation bar section -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <input type="checkbox" name="hamburger-checkbox" id="hamburger-checkbox">
+            <div class="hamburger-lines">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </div>
+            <!-- menu items for navigation bar -->
+            <ul class="menu-items">
+                <li><a href="#home_section">Home <i class="fa-solid fa-house"></i></a></li>
+                <li><a href="#category_section">Category <i class="fa-solid fa-gamepad"></i></a></li>
+                <li><a href="#about_us_section">About <i class="fa-solid fa-globe"></i></a></li>
+                <li><a href="#contact_us_section">Contact Us <i class="fa-solid fa-phone"></i></a></li>
+                <li><a href="#">Sign In <i class="fa-solid fa-user"></i></a></li>
+                <li><a href="#">Cart <i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li><span id="cartCount"></span></li>
+            </ul>
+            <h1 class="logo">
+                <a href="#home_section"><span class="first_color">Game</span><span class="second_color">Store</span></a>
+            </h1>
+        </div>
+    </nav>
+
+    <!-- banner slider section -->
+    <div class="banner-slider">
+        <div class="banner-slider-wrap">
+            <div class="container">
+                <div class="item">
+                    <div class="row">
+                        <div class="grid-6-xl grid-6-lg grid-6-md grid-6-sm grid-12">
+                            <div class="content">
+                                <h2>
+                                    Hot New Games
+                                </h2>
+                                <p>Great new games we think they'll love.</p>
+                                <a href="#category_section" class="shop-now-btn btn">
+                                    Shop Now
+                                </a>
+                            </div>
+                        </div>
+                        <div class="grid-6-xl grid-6-lg grid-6-md grid-6-sm grid-12">
+                            <div class="image">
+                                <img src="assets/images/gaming.jpg" alt="Main Slider Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- search bar section -->
+    <div class="ads-section">
+        <div class="container">
+            <div class="row">
+                <div class="grid-3-xl grid-3-lg grid-12-md grid-12-sm"></div>
+                <div class="grid-6-xl grid-6-lg grid-12-md grid-12-sm">
+                    <form>
+                        <input type="search" placeholder="What are you looking for?">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="grid-3-xl grid-3-lg grid-12-md grid-12-sm"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ads section -->
+    <div class="ads-section">
+        <div class="container">
+            <div class="ads-img">
+                <img src="assets/images/banner.svg" alt="Banner Ads">
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Section -->
+    <section id="category_section" class="product-section">
+        <div class="product-section-wrap">
+            <div class="container">
+                <div class="heading-section">
+                    <div class="mx-auto text-center">
+                        <h1 class="main-title">
+                            <span class="first_color">Category</span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="category-list product-list">
+                    <div class="row">
+                        <div class="grid-2-xl grid-2-lg grid-4-md grid-4-sm grid-4-xs">
+                            <div class="single-product">
+                                <div class="image">
+                                    <img src="assets/images/category/play-station-logo.svg" alt="Play Station">
+                                </div>
+                                <div class="desc text-center">
+                                    <h4 class="product-title">
+                                        PS5
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-2-xl grid-2-lg grid-4-md grid-4-sm grid-4-xs">
+                            <div class="single-product">
+                                <div class="image">
+                                    <img src="assets/images/category/xbox.svg" alt="XBOX">
+                                </div>
+                                <div class="desc text-center">
+                                    <h4 class="product-title">
+                                        XBOX
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-2-xl grid-2-lg grid-4-md grid-4-sm grid-4-xs">
+                            <div class="single-product">
+                                <div class="image">
+                                    <img src="assets/images/category/gaming-pc.svg" alt="Gaming PC">
+                                </div>
+                                <div class="desc text-center">
+                                    <h4 class="product-title">
+                                        Gaming PC
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-2-xl grid-2-lg grid-4-md grid-4-sm grid-4-xs">
+                            <div class="single-product">
+                                <div class="image">
+                                    <img src="assets/images/category/wear.svg" alt="Apparel">
+                                </div>
+                                <div class="desc text-center">
+                                    <h4 class="product-title">
+                                        Apparel
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-2-xl grid-2-lg grid-4-md grid-4-sm grid-4-xs">
+                            <div class="single-product">
+                                <div class="image">
+                                    <img src="assets/images/category/gift.svg" alt="Gift Cards">
+                                </div>
+                                <div class="desc text-center">
+                                    <h4 class="product-title">
+                                        Gift Cards
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-2-xl grid-2-lg grid-4-md grid-4-sm grid-4-xs">
+                            <div class="single-product">
+                                <div class="image">
+                                    <img src="assets/images/category/fire.svg" alt="New And Trending">
+                                </div>
+                                <div class="desc text-center">
+                                    <h4 class="product-title">
+                                        New & Trending
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flash Sale Section -->
+    <section id="flash_sale_section" class="product-section">
+        <div class="product-section-wrap">
+            <div class="container">
+                <div class="heading-section">
+                    <div class="mx-auto text-center">
+                        <h1 class="main-title">
+                            <span class="first_color">Flash</span>
+                            <span class="second_color">Sale</span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="product-list">
+                    <div class="row">
+                        <div class="grid-3-xl grid-3-lg grid-4-md grid-6-sm grid-6-xs">
+                            <a href="#product_description_section" class="cartLink" >
+                                <div class="single-product">
+                                    <div class="image">
+                                        <img src="assets/images/games/gta5.jpg" alt="beans">
+                                        <div class="offer">
+                                            <span class="off">-30%</span>
+                                            <span class="sale">New!</span>
+                                        </div>
+                                    </div>
+                                    <div class="desc text-center">
+                                        <h4 class="product-title">
+                                            PS4 GTA5
+                                        </h4>
+                                        <div class="price">
+                                            <span>$33.99</span>
+                                            <del>
+                                            $42.25
+                                        </del>
+                                        </div>
+                                        <div class="select-options-outer-wrap">
+                                            <div class="select-options">
+                                                <span class="select-options-wrap">
+                                                <span class="text"> Add To Cart <i class="fa-solid fa-cart-shopping"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid-3-xl grid-3-lg grid-4-md grid-6-sm grid-6-xs">
+                            <a href="#product_description_section" class="cartLink">
+                                <div class="single-product">
+                                    <div class="image">
+                                        <img src="assets/images/games/farcry.jpg" alt="beans">
+
+                                        <div class="offer">
+                                            <span class="off">-30%</span>
+                                            <span class="sale">Sale!</span>
+                                        </div>
+                                    </div>
+                                    <div class="desc text-center">
+                                        <h4 class="product-title">
+                                            Far Cry 5 - PC
+                                        </h4>
+                                        <div class="price">
+                                            <span>$35.00</span>
+                                            <del>
+                                            $45.99
+                                        </del>
+                                        </div>
+                                        <div class="select-options-outer-wrap">
+                                            <div class="select-options">
+                                                <span class="select-options-wrap">
+                                            <span class="text"> Add To Cart <i class="fa-solid fa-cart-shopping"></i></span>
+
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid-3-xl grid-3-lg grid-4-md grid-6-sm grid-6-xs">
+                            <a href="#product_description_section" class="cartLink">
+                                <div class="single-product">
+                                    <div class="image">
+                                        <img src="assets/images/games/red_dead.jpg" alt="beans">
+
+                                        <div class="offer">
+                                            <span class="off">-30%</span>
+                                            <span class="sale">Sale!</span>
+                                        </div>
+                                    </div>
+                                    <div class="desc text-center">
+                                        <h4 class="product-title">
+                                            Red Dead Redemption 2
+                                        </h4>
+                                        <div class="price">
+                                            <span>$19.99</span>
+                                            <del>
+                                            $30.00
+                                        </del>
+                                        </div>
+                                        <div class="select-options-outer-wrap">
+                                            <div class="select-options">
+                                                <span class="select-options-wrap">
+                                            <span class="text"> Add To Cart <i class="fa-solid fa-cart-shopping"></i></span>
+
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid-3-xl grid-3-lg grid-4-md grid-6-sm grid-6-xs">
+                            <a href="#product_description_section" class="cartLink">
+                                <div class="single-product">
+                                    <div class="image">
+                                        <img src="assets/images/games/watch_dogs.jpg" alt="beans">
+
+                                        <div class="offer">
+                                            <span class="off">-30%</span>
+                                            <span class="sale">Sale!</span>
+                                        </div>
+                                    </div>
+                                    <div class="desc text-center">
+                                        <h4 class="product-title">
+                                            Watch Dogs Legion PS5
+                                        </h4>
+                                        <div class="price">
+                                            <span>$27.70</span>
+                                            <del>
+                                            $30.00
+                                        </del>
+                                        </div>
+                                        <div class="select-options-outer-wrap">
+                                            <div class="select-options">
+                                                <span class="select-options-wrap">
+                                            <span class="text"> Add To Cart <i class="fa-solid fa-cart-shopping"></i></span>
+
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Electronics Sale Section -->
+    <section id="electronics_section" class="product-section">
+        <div class="product-section-wrap">
+            <div class="container">
+                <div class="heading-section">
+                    <div class="mx-auto text-center">
+                        <h1 class="main-title">
+                            <span class="first_color">Electronics</span> <span class="second_color">Sale</span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="product-list">
+                    <div class="row">
+                        <div class="grid-3-xl grid-3-lg grid-4-md grid-6-sm grid-6-xs">
+                            <a href="#product_description_section" class="cartLink">
+                                <div class="single-product">
+                                    <div class="image">
+                                        <img src="assets/images/electronics/2.jpg" alt="Monitor">
+
+                                        <div class="offer">
+                                            <span class="off">-30%</span>
+                                            <span class="sale">New!</span>
+                                        </div>
+                                    </div>
+                                    <div class="desc text-center">
+                                        <h4 class="product-title">
+                                            BenQ Gaming Monitor
+                                        </h4>
+                                        <div class="price">
+                                            <span>$499.99</span>
+                                            <del>
+                                            $649.99
+                                        </del>
+                                        </div>
+                                        <div class="select-options-outer-wrap">
+                                            <div class="select-options">
+                                                <span class="select-options-wrap">
+                                            <span class="text"> Add To Cart <i class="fa-solid fa-cart-shopping"></i></span>
+
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid-3-xl grid-3-lg grid-4-md grid-6-sm grid-6-xs">
+                            <a href="#product_description_section" class="cartLink">
+                                <div class="single-product">
+                                    <div class="image">
+                                        <img src="assets/images/electronics/3.jpeg" alt="beans">
+
+                                        <div class="offer">
+                                            <span class="off">-30%</span>
+                                            <span class="sale">Sale!</span>
+                                        </div>
+                                    </div>
+                                    <div class="desc text-center">
+                                        <h4 class="product-title">
+                                            S107 Gaming Combo
+                                        </h4>
+                                        <div class="price">
+                                            <span>$64.00</span>
+                                            <del>
+                                            $70.00
+                                        </del>
+                                        </div>
+                                        <div class="select-options-outer-wrap">
+                                            <div class="select-options">
+                                                <span class="select-options-wrap">
+                                            <span class="text"> Add To Cart <i class="fa-solid fa-cart-shopping"></i></span>
+
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid-3-xl grid-3-lg grid-4-md grid-6-sm grid-6-xs">
+                            <a href="#product_description_section" class="cartLink">
+                                <div class="single-product">
+                                    <div class="image">
+                                        <img src="assets/images/electronics/1.jpg" alt="HeadPhone">
+
+                                        <div class="offer">
+                                            <span class="off">-30%</span>
+                                            <span class="sale">Sale!</span>
+                                        </div>
+                                    </div>
+                                    <div class="desc text-center">
+                                        <h4 class="product-title">
+                                            Razer Gaming Headset
+                                        </h4>
+                                        <div class="price">
+                                            <span>$80.00</span>
+                                            <del>
+                                            $89.99
+                                        </del>
+                                        </div>
+                                        <div class="select-options-outer-wrap">
+                                            <div class="select-options">
+                                                <span class="select-options-wrap">
+                                            <span class="text"> Add To Cart <i class="fa-solid fa-cart-shopping"></i></span>
+
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid-3-xl grid-3-lg grid-4-md grid-6-sm grid-6-xs">
+                            <a href="#product_description_section" class="cartLink">
+                                <div class="single-product">
+                                    <div class="image">
+                                        <img src="assets/images/electronics/4.jpg" alt="HeadPhone">
+
+                                        <div class="offer">
+                                            <span class="off">-30%</span>
+                                            <span class="sale">Sale!</span>
+                                        </div>
+                                    </div>
+                                    <div class="desc text-center">
+                                        <h4 class="product-title">
+                                            HAJAAN Gaming PC
+                                        </h4>
+                                        <div class="price">
+                                            <span>$849.99</span>
+                                            <del>
+                                            $999.99
+                                        </del>
+                                        </div>
+                                        <div class="select-options-outer-wrap">
+                                            <div class="select-options">
+                                                <span class="select-options-wrap">
+                                            <span class="text"> Add To Cart <i class="fa-solid fa-cart-shopping"></i></span>
+
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Description Section -->
+    <section id="product_description_section" class="product-section">
+        <div class="product-section-wrap">
+            <div class="container">
+                <div class="heading-section">
+                    <div class="mx-auto text-center">
+                        <h1 class="main-title">
+                            <span class="first_color">Product</span> <span class="second_color">Description</span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="product-list">
+                    <div class="row">
+                        <div class="grid-5-xl grid-5-lg grid-5-md grid-12-sm grid-12-xs">
+                            <div class="single-product-desc">
+                                <div class="image">
+                                    <img src="assets/images/electronics/product_desc.jpg" alt="HAJAAN Gaming PC">
+                                    <div class="single-product-more-image row" style="padding-bottom: 0px;">
+                                        <table>
+                                            <tr>
+                                                <th><img src="assets/images/electronics/product_desc.jpg" alt="HAJAAN Gaming PC"></th>
+                                                <th><img src="assets/images/electronics/product_desc.jpg" alt="HAJAAN Gaming PC"></th>
+                                                <th><img src="assets/images/electronics/product_desc.jpg" alt="HAJAAN Gaming PC"></th>
+                                                <th><img src="assets/images/electronics/product_desc.jpg" alt="HAJAAN Gaming PC"></th>
+                                                <th><img src="assets/images/electronics/product_desc.jpg" alt="HAJAAN Gaming PC"></th>
+                                                <th><img src="assets/images/electronics/product_desc.jpg" alt="HAJAAN Gaming PC"></th>
+                                                <th><img src="assets/images/electronics/product_desc.jpg" alt="HAJAAN Gaming PC"></th>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-7-xl grid-7-lg grid-7-md grid-12-sm grid-12-xs">
+                            <div class="single-product-desc">
+                                <table>
+                                    <tr>
+                                        <th colspan="2" style="font-size: 23px;">HAJAAN Breeze Gaming Desktop Tower PC</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Price</th>
+                                        <th>$849.99</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Brand</th>
+                                        <th>HAJAAN</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Specific uses for product</th>
+                                        <th>Multimedia, Personal, Gaming</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Operating System</th>
+                                        <th>Windows 11 Pro</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Memory Storage</th>
+                                        <th>512 GB</th>
+                                    </tr>
+                                    <tr>
+                                        <th>RAM Memory</th>
+                                        <th>16 GB</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Series</th>
+                                        <th>BREEZE</th>
+                                    </tr>
+                                    <tr>
+                                        <th>CPU model</th>
+                                        <th>Core i3</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Shipping Details</th>
+                                        <th>Free Standard Shipping for orders over $35</th>
+                                    </tr>
+                                </table>
+                                <div class="product-details row">
+                                    <div class="grid-6-xl grid-6-lg grid-6-md grid-6-sm grid-6-xs">
+                                        <div class="btn-wrap text-center">
+                                            <a href="#"><i class="fa-solid fa-store"></i> Store Availability</a>
+                                        </div>
+                                    </div>
+                                    <div class="grid-6-xl grid-6-lg grid-6-md grid-6-sm grid-6-xs">
+                                        <div class="btn-wrap text-center">
+                                            <a href="#"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about_us_section" class="product-section">
+        <div class="product-section-wrap">
+            <div class="container">
+                <div class="heading-section">
+                    <div class="mx-auto text-center">
+                        <h1 class="main-title">
+                            <span class="first_color">About</span> <span class="second_color">Us</span>
+                        </h1>
+                        <span class="sub-title justify-text">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </span>
+                    </div>
+                </div>
+                <div class="product-list">
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact_us_section" class="product-section">
+        <div class="product-section-wrap">
+            <div class="container">
+                <div class="heading-section">
+                    <div class="mx-auto text-center">
+                        <h1 class="main-title">
+                            <span class="first_color">Contact</span>
+                            <span class="second_color">Us</span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="product-list">
+                    <div class="row">
+                        <div class="grid-3-xl grid-3-lg grid-4-md grid-12-sm grid-12-xs">
+                            <div class="single-product">
+                                <div class="desc text-center">
+                                    <h4 class="product-title">
+                                        Mississauga Store
+                                    </h4>
+                                    <br>
+                                    <p><i class="fa fa-phone"></i> <a href="tel:+14372549777">+14372549777</a></p>
+                                    <p><i class="fa fa-envelope"></i> <a href="mailto:mississauga@gamestore.com">mississauga@gamestore.com</a></p>
+                                    <p><i class="fa fa-location"></i> 74 Saint Barbara Blvd., Mississauga, ON</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-3-xl grid-3-lg grid-4-md grid-12-sm grid-12-xs">
+                            <div class="single-product">
+                                <div class="desc text-center">
+                                    <h4 class="product-title">
+                                        Brampton Store
+                                    </h4>
+                                    <br>
+                                    <p><i class="fa fa-phone"></i> <a href="tel:+14372549778">+14372549778</a></p>
+                                    <p><i class="fa fa-envelope"></i> <a href="mailto:brampton@gamestore.com">brampton@gamestore.com</a></p>
+                                    <p><i class="fa fa-location"></i> 27 Church St W, Brampton, ON</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-3-xl grid-3-lg grid-4-md grid-12-sm grid-12-xs">
+                            <div class="single-product">
+                                <div class="desc text-center">
+                                    <h4 class="product-title">
+                                        Hamilton Store
+                                    </h4>
+                                    <br>
+                                    <p><i class="fa fa-phone"></i> <a href="tel:+14372549779">+14372549779</a></p>
+                                    <p><i class="fa fa-envelope"></i> <a href="mailto:hamilton@gamestore.com">hamilton@gamestore.com</a></p>
+                                    <p><i class="fa fa-location"></i> 36 Hunter St E, Hamilton, ON</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-3-xl grid-3-lg grid-4-md grid-12-sm grid-12-xs">
+                            <div class="single-product">
+                                <div class="desc text-center">
+                                    <h4 class="product-title">
+                                        Toronto Store
+                                    </h4>
+                                    <br>
+                                    <p><i class="fa fa-phone"></i> <a href="tel:+14372549770">+14372549770</a></p>
+                                    <p><i class="fa fa-envelope"></i> <a href="mailto:toronto@gamestore.com">toronto@gamestore.com</a></p>
+                                    <p><i class="fa fa-location"></i> 140 Bay St., Toronto, ON</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer section -->
+    <div class="footer">
+        <div class="top-footer">
+            <div class="container">
+                <div class="footer-inner">
+                    <div class="row">
+                        <div class="logo-side grid-3-xl grid-3-lg grid-6-md grid-6-sm">
+                            <div class="image">
+                                <h2>GameStore</h2>
+                            </div>
+                            <div class="content">
+                                <p>We provide quality products and are authorized gaming suppliers.We provide quality products and are authorized gaming suppliers.</p>
+                            </div>
+                        </div>
+                        <div class="categories grid-3-xl grid-3-lg grid-6-md grid-6-sm">
+                            <h3>Quick Links</h3>
+                            <ul>
+                                <li><a href="#home_section">Home</a></li>
+                                <li><a href="#about_us_section">About Us</a></li>
+                                <li><a href="#contact_us_section">Contact Us</a></li>
+                                <li><a href="#">Locations</a></li>
+                            </ul>
+                        </div>
+                        <div class="categories grid-3-xl grid-3-lg grid-6-md grid-6-sm">
+                            <h3>Other Pages</h3>
+                            <ul>
+                                <li><a href="#">Customer Service</a></li>
+                                <li><a href="#">Shipping & Delivery</a></li>
+                                <li><a href="#">Warranties</a></li>
+                                <li><a href="#">Pre-Orders</a></li>
+                            </ul>
+                        </div>
+                        <div class="form-side categories grid-3-xl grid-3-lg grid-6-md grid-6-sm">
+                            <h3>Newsletter</h3>
+                            <p>We provide quality products and are authorized gaming suppliers. We provide quality products and are authorized gaming suppliers.</p>
+                            <input type="text" class="form-control text-center" placeholder="Type Your Email">
+                            <div class="btn-wrap text-center">
+                                <a href="#">SUBSCRIBE TO NEWSLETTER</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-footer">
+            <div class="container">
+                <div class="copyright-text text-center">
+                    <p>&copy; GameStore | All Right Reserved 2022</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- body close -->
+
+</html>

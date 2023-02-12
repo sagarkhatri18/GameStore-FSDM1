@@ -1,0 +1,296 @@
+/*
+    Project Name: GameStore Online Gaming Platform
+    Author: Sagar Khatri and Basanta Shahi
+    Date: 12/01/2022
+    File Name: grid.css
+*/
+
+
+/* applies to all the grids layout breakdown class */
+
+.grid-1-xs,
+.grid-2-xs,
+.grid-3-xs,
+.grid-4-xs,
+.grid-5-xs,
+.grid-6-xs,
+.grid-7-xs,
+.grid-8-xs,
+.grid-9-xs,
+.grid-10-xs,
+.grid-11-xs,
+.grid-12-xs,
+.grid-1-sm,
+.grid-2-sm,
+.grid-3-sm,
+.grid-4-sm,
+.grid-5-sm,
+.grid-6-sm,
+.grid-7-sm,
+.grid-8-sm,
+.grid-9-sm,
+.grid-10-sm,
+.grid-11-sm,
+.grid-12-sm,
+.grid-1-md,
+.grid-2-md,
+.grid-3-md,
+.grid-4-md,
+.grid-5-md,
+.grid-6-md,
+.grid-7-md,
+.grid-8-md,
+.grid-9-md,
+.grid-10-md,
+.grid-11-md,
+.grid-12-md,
+.grid-1-lg,
+.grid-2-lg,
+.grid-3-lg,
+.grid-4-lg,
+.grid-5-lg,
+.grid-6-lg,
+.grid-7-lg,
+.grid-8-lg,
+.grid-9-lg,
+.grid-10-lg,
+.grid-11-lg,
+.grid-12-lg,
+.grid-1-xl,
+.grid-2-xl,
+.grid-3-xl,
+.grid-4-xl,
+.grid-5-xl,
+.grid-6-xl,
+.grid-7-xl,
+.grid-8-xl,
+.grid-9-xl,
+.grid-10-xl,
+.grid-11-xl,
+.grid-12-xl {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+*,
+ ::after,
+ ::before {
+    box-sizing: border-box;
+}
+
+
+/* References from 
+    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_mq_breakpoints
+*/
+
+
+/* Extra small devices (phones, 600px and down) */
+
+@media only screen and (max-width: 600px) {
+    .grid-1-xs {
+        max-width: 8.3333%;
+    }
+    .grid-2-xs {
+        max-width: 16.6667%;
+    }
+    .grid-3-xs {
+        max-width: 24.9999%;
+    }
+    .grid-4-xs {
+        max-width: 33.3333%;
+    }
+    .grid-5-xs {
+        max-width: 41.666667%;
+    }
+    .grid-6-xs {
+        max-width: 49.9998%;
+    }
+    .grid-7-xs {
+        max-width: 58.3331%;
+    }
+    .grid-8-xs {
+        max-width: 66.6667%;
+    }
+    .grid-9-xs {
+        max-width: 74.9997%;
+    }
+    .grid-10-xs {
+        max-width: 83.333%;
+    }
+    .grid-11-xs {
+        max-width: 91.663%;
+    }
+    .grid-12-xs {
+        max-width: 100%;
+    }
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+@media only screen and (min-width: 600px) {
+    .grid-1-sm {
+        max-width: 8.3333%;
+    }
+    .grid-2-sm {
+        max-width: 16.6667%;
+    }
+    .grid-3-sm {
+        max-width: 24.9999%;
+    }
+    .grid-4-sm {
+        max-width: 33.3333%;
+    }
+    .grid-5-sm {
+        max-width: 41.666667%;
+    }
+    .grid-6-sm {
+        max-width: 49.9998%;
+    }
+    .grid-7-sm {
+        max-width: 58.3331%;
+    }
+    .grid-8-sm {
+        max-width: 66.6667%;
+    }
+    .grid-9-sm {
+        max-width: 74.9997%;
+    }
+    .grid-10-sm {
+        max-width: 83.333%;
+    }
+    .grid-11-sm {
+        max-width: 91.663%;
+    }
+    .grid-12-sm {
+        max-width: 100%;
+    }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+
+@media only screen and (min-width: 768px) {
+    .grid-1-md {
+        max-width: 8.3333%;
+    }
+    .grid-2-md {
+        max-width: 16.6667%;
+    }
+    .grid-3-md {
+        max-width: 24.9999%;
+    }
+    .grid-4-md {
+        max-width: 33.333%;
+    }
+    .grid-5-md {
+        max-width: 41.666667%;
+    }
+    .grid-6-md {
+        max-width: 49.9998%;
+    }
+    .grid-7-md {
+        max-width: 58.3331%;
+    }
+    .grid-8-md {
+        max-width: 66.6667%;
+    }
+    .grid-9-md {
+        max-width: 74.9997%;
+    }
+    .grid-10-md {
+        max-width: 83.333%;
+    }
+    .grid-11-md {
+        max-width: 91.663%;
+    }
+    .grid-12-md {
+        max-width: 100%;
+    }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+
+@media only screen and (min-width: 992px) {
+    .grid-1-lg {
+        max-width: 8.3333%;
+    }
+    .grid-2-lg {
+        max-width: 16.6667%;
+    }
+    .grid-3-lg {
+        max-width: 24.9999%;
+    }
+    .grid-4-lg {
+        max-width: 33.333%;
+    }
+    .grid-5-lg {
+        max-width: 41.666667%;
+    }
+    .grid-6-lg {
+        max-width: 49.9998%;
+    }
+    .grid-7-lg {
+        max-width: 58.3331%;
+    }
+    .grid-8-lg {
+        max-width: 66.6667%;
+    }
+    .grid-9-lg {
+        max-width: 74.9997%;
+    }
+    .grid-10-lg {
+        max-width: 83.333%;
+    }
+    .grid-11-lg {
+        max-width: 91.663%;
+    }
+    .grid-12-lg {
+        max-width: 100%;
+    }
+}
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+@media only screen and (min-width: 1200px) {
+    .grid-1-xl {
+        max-width: 8.3333%;
+    }
+    .grid-2-xl {
+        max-width: 16.6667%;
+    }
+    .grid-3-xl {
+        max-width: 24.9999%;
+    }
+    .grid-4-xl {
+        max-width: 33.333%;
+    }
+    .grid-5-xl {
+        max-width: 41.666667%;
+    }
+    .grid-6-xl {
+        max-width: 49.9998%;
+    }
+    .grid-7-xl {
+        max-width: 58.3331%;
+    }
+    .grid-8-xl {
+        max-width: 66.6667%;
+    }
+    .grid-9-xl {
+        max-width: 74.9997%;
+    }
+    .grid-10-xl {
+        max-width: 83.333%;
+    }
+    .grid-11-xl {
+        max-width: 91.663%;
+    }
+    .grid-12-xl {
+        max-width: 100%;
+    }
+}

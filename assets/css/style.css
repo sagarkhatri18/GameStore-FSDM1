@@ -1,0 +1,820 @@
+/*
+    Project Name: GameStore Online Gaming Platform
+    Author: Sagar Khatri and Basanta Shahi
+    Date: 12/01/2022
+    File Name: style.css
+*/
+
+
+/* applies to all the elements */
+
+* {
+    font-family: Cuprum;
+}
+
+
+/* html body selector */
+
+body {
+    color: #333;
+    font-size: 1em;
+    line-height: 1.3;
+}
+
+
+/* applies to all the images of the webpage */
+
+img {
+    width: 100%;
+}
+
+
+/* remove any decoration for html link content */
+
+a {
+    text-decoration: none;
+}
+
+
+/* adding before and after padding */
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* html form-control class selector */
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 13px 10px;
+    font-size: 16px;
+    font-weight: 400;
+    border: 1px solid #d3d3d3;
+}
+
+
+/* at first remove any checkbox at the navbar*/
+
+.navbar input[type="checkbox"],
+.navbar .hamburger-lines {
+    display: none;
+}
+
+
+/* html container class selector */
+
+.container {
+    max-width: 1200px;
+    width: 90%;
+    margin: auto;
+}
+
+
+/* adding style to navbar class */
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    background: #fff;
+    color: #000;
+    z-index: 100;
+}
+
+
+/* adding style to navbar-container class */
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    align-items: center;
+}
+
+
+/* setting the order position and arrange the element in flex */
+
+.menu-items {
+    order: 2;
+    display: flex;
+}
+
+
+/* applying css to the logo class */
+
+.logo {
+    order: 1;
+    font-size: 2.3rem;
+    float: left;
+    display: flex;
+    width: 36%;
+}
+
+.first_color {
+    color: #538607;
+}
+
+.second_color {
+    color: #00130b;
+}
+
+
+/* applying css to all the list items inside menu-items class */
+
+.menu-items li {
+    list-style: none;
+    margin-left: 1.5rem;
+    font-size: 1.3rem;
+}
+
+
+/* applying css to all the hyperlinks inside navbar class */
+
+.navbar a {
+    color: #444;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+
+/* applying css when mous is hover hyperlink inide navbar class */
+
+.navbar a:hover {
+    color: #538607;
+    /* text-decoration: underline; */
+}
+
+
+/* mediaquery css only applies when width of the browser is less than or equal to 768px */
+
+@media (max-width: 768px) {
+    .navbar {
+        opacity: 0.95;
+    }
+    .navbar-container input[type="checkbox"],
+    .navbar-container .hamburger-lines {
+        display: block;
+    }
+    .navbar-container {
+        display: block;
+        position: relative;
+        height: 64px;
+    }
+    .navbar-container input[type="checkbox"] {
+        position: absolute;
+        display: block;
+        height: 32px;
+        width: 30px;
+        top: 20px;
+        left: 20px;
+        z-index: 5;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .navbar-container .hamburger-lines {
+        display: block;
+        height: 28px;
+        width: 35px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .navbar-container .hamburger-lines .line {
+        display: block;
+        height: 4px;
+        width: 100%;
+        border-radius: 10px;
+        background: #333;
+    }
+    .navbar-container .hamburger-lines .line1 {
+        transform-origin: 0% 0%;
+        transition: transform 0.3s ease-in-out;
+    }
+    .navbar-container .hamburger-lines .line2 {
+        transition: transform 0.2s ease-in-out;
+    }
+    .navbar-container .hamburger-lines .line3 {
+        transform-origin: 0% 100%;
+        transition: transform 0.3s ease-in-out;
+    }
+    .navbar .menu-items {
+        padding-top: 100px;
+        background: #fff;
+        height: 100vh;
+        max-width: 300px;
+        transform: translate(-150%);
+        display: flex;
+        flex-direction: column;
+        margin-left: -40px;
+        padding-left: 40px;
+        transition: transform 0.5s ease-in-out;
+        box-shadow: 5px 0px 10px 0px #aaa;
+        overflow: scroll;
+    }
+    .navbar .menu-items li {
+        margin-bottom: 1.8rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+    .logo {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 2.5rem;
+    }
+    .navbar-container input[type="checkbox"]:checked~.menu-items {
+        transform: translateX(0);
+    }
+    .navbar-container input[type="checkbox"]:checked~.hamburger-lines .line1 {
+        transform: rotate(45deg);
+    }
+    .navbar-container input[type="checkbox"]:checked~.hamburger-lines .line2 {
+        transform: scaleY(0);
+    }
+    .navbar-container input[type="checkbox"]:checked~.hamburger-lines .line3 {
+        transform: rotate(-45deg);
+    }
+}
+
+
+/* mediaquery css only applies when width of the browser is less than or equal to 500px */
+
+@media (max-width: 500px) {
+    .navbar-container input[type="checkbox"]:checked~.logo {
+        display: none;
+    }
+}
+
+
+/* banner slider */
+
+.banner-slider {
+    background-color: #f6f6f9;
+    padding: 60px 0;
+}
+
+.banner-slider .content h2 {
+    font-size: 66px;
+    color: #538607;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    margin: 10px 0 0;
+}
+
+.banner-slider .content p {
+    margin: 0;
+    color: #b7b7b7;
+    font-size: 15px;
+    margin-top: 22px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.banner-slider .item .row {
+    align-items: center;
+}
+
+.btn {
+    padding: 12px 36px;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 30px;
+    display: inline-block;
+}
+
+.shop-now-btn {
+    background-color: #98ab3f;
+    margin-bottom: 10px;
+}
+
+
+/* ----ads-section--- */
+
+.ads-img img {
+    height: 300px;
+    object-fit: cover;
+}
+
+
+/* search section */
+
+form {
+    color: #555;
+    display: flex;
+    padding: 3px;
+    border: 1px solid #cbbaba;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+input[type="search"] {
+    border: none;
+    background: transparent;
+    margin: 0;
+    padding: 8px 8px;
+    font-size: 21px;
+    color: inherit;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    width: 100%;
+}
+
+input[type="search"]::placeholder {
+    color: #bbb;
+}
+
+button[type="submit"] {
+    text-indent: -999px;
+    overflow: hidden;
+    width: 40px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    background: transparent url("../images/search.svg") no-repeat center;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+button[type="submit"]:hover {
+    opacity: 1;
+}
+
+button[type="submit"]:focus,
+input[type="search"]:focus {
+    box-shadow: 0 0 3px 0 #1183d6;
+    border-color: #1183d6;
+    outline: none;
+}
+
+
+/* Category Section*/
+
+.category-list .single-product img {
+    width: 73px;
+    height: 66px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.category-list .product-title {
+    font-size: 20px !important;
+    margin-top: 17px !important;
+}
+
+
+/* ----product-section--- */
+
+.product-section {
+    background-color: #f6f6f9;
+    padding-top: 60px;
+}
+
+.main-title {
+    font-size: 40px;
+    color: #7d8746;
+    font-family: Cuprum;
+    line-height: 0.9;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.main-title::after {
+    content: "";
+    background-color: #98ab3f;
+    width: 80px;
+    height: 3px;
+    position: absolute;
+    bottom: -10px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+.sub-title {
+    font-size: 22px;
+    color: #b0acac;
+    font-weight: 300;
+}
+
+.justify-text {
+    text-align: justify;
+}
+
+.product-list .row {
+    padding-bottom: 50px;
+}
+
+.product-list .select-options-outer-wrap {
+    background-color: unset;
+    border: none;
+}
+
+.select-options-outer-wrap {
+    bottom: -25px;
+}
+
+.product-list {
+    margin-top: 20px;
+    /* padding-bottom: 60px; */
+}
+
+.product-list .image {
+    background-color: #f8f8f8;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.product-list .single-product {
+    box-shadow: 0 4px 12px 0 rgba(141, 141, 141, 0.13);
+    margin-top: 20px;
+    border: solid 2px transparent;
+    transition: all 0.3s;
+    transition-delay: 0.3s;
+    position: relative;
+}
+
+.product-list .product-title {
+    font-family: Cuprum;
+    font-size: 25px;
+    color: #484848;
+}
+
+.product-list .price {
+    margin: 5px 0 10px;
+}
+
+.product-list .price span {
+    color: #98ab3f;
+    font-size: 22px;
+    font-family: poppins;
+    font-weight: 700;
+}
+
+.product-list .price del {
+    color: #484848;
+    font-family: poppins;
+    font-weight: 600;
+    text-decoration: line-through;
+}
+
+
+/* ---offer--- */
+
+.offer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    top: 18px;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    transition: all 0.3s;
+    transition-delay: 0.4s;
+}
+
+.offer span {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 100%;
+    background-color: #ff9a02;
+    margin: 0px 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    text-transform: capitalize;
+    font-family: 'Livvic', sans-serif;
+}
+
+.offer span:last-child {
+    background-color: #fd5723;
+}
+
+
+/* ---select-option-- */
+
+.select-options {
+    display: inline-block;
+    background-color: #98ab3f;
+    padding: 14px 30px;
+    border-radius: 30px;
+}
+
+.select-options .select-options-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.select-options .select-options-wrap span {
+    color: #fff;
+}
+
+.select-options .select-options-wrap .text {
+    margin-right: 8px;
+}
+
+.select-options-outer-wrap {
+    position: absolute;
+    margin: -8px auto;
+    left: -2px;
+    right: -2px;
+    bottom: -30px;
+    background-color: #fff;
+    border: solid 2px #98ab3f;
+    border-top-color: rgb(152, 171, 63);
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-top: 0;
+    z-index: 5;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+
+.product-list .single-product:hover {
+    border: solid 2px #98ab3f;
+    transition: all 0.3s;
+    transition-delay: 0.01s;
+}
+
+.product-list .single-product:hover .desc {
+    transition: all 0.5s;
+}
+
+.product-list .single-product:hover .select-options-outer-wrap {
+    visibility: visible;
+    transition: all 0.3s;
+}
+
+
+/* ----product-info---- */
+
+.product-list .single-product:hover .offer {
+    visibility: hidden;
+    transition: all 0.1s;
+}
+
+.product-list .single-product:hover .image {
+    background-color: #fff;
+    transition: all 0.3s;
+}
+
+
+/* product details section */
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    /* border: 1px solid #dddddd; */
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.single-product-desc {
+    margin-top: 20px;
+    position: relative;
+}
+
+.single-product-more-image {
+    padding-bottom: 0px !important;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    margin-top: 0px !important;
+}
+
+.product-details {
+    margin: 0 !important;
+    padding-bottom: 10px !important;
+}
+
+.product-details .btn-wrap a {
+    text-transform: uppercase;
+    padding: 16px !important;
+    margin-top: 10px !important;
+    display: block;
+    background-color: #98ab3f;
+    color: #ffffff;
+}
+
+
+/* Contact us section */
+
+#contact_us_section a {
+    text-decoration: none;
+    color: unset;
+}
+
+
+/* footer starts */
+
+.footer {
+    background-color: #00130b;
+    color: var(--white);
+    padding: 100px 0px 40px;
+}
+
+.categories h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.categories ul li {
+    list-style: none;
+    margin-bottom: 18px;
+}
+
+.logo-side .image {
+    width: 127px;
+    height: 45px;
+}
+
+.logo-side .content {
+    margin: 15px 0px 40px;
+}
+
+.form-side input {
+    font-family: 'Roboto', sans-serif;
+    margin: 30px 0px 15px;
+}
+
+.form-side .btn-wrap a {
+    width: 100%;
+    margin: 0;
+    font-weight: 400;
+}
+
+.btn-footer {
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 40px;
+}
+
+.btn-wrap a {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--white);
+    background-color: green;
+    padding: 13px 35px;
+    margin-top: 25px;
+    display: inline-block;
+}
+
+.footer a,
+.footer p,
+.footer h3 {
+    color: white;
+}
+
+
+/* Custom class name based CSS so we can just write css and have work done */
+
+.text-center {
+    text-align: center;
+}
+
+.mx-auto {
+    margin: 0 auto;
+}
+
+
+/* css style rules for row class */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-top: 15px;
+}
+
+
+/* css style rules for container class */
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+
+/* --------Responsive CSS Rules -------- */
+
+
+/* media query css when the screen size is lss than or equal to 992px */
+
+@media only screen and (max-width:992px) {
+    /* ---banner-slider-- */
+    .banner-slider .content h2 {
+        font-size: 55px;
+        line-height: 1;
+    }
+}
+
+
+/* media query css when the screen size is lss than or equal to 767px */
+
+@media only screen and (max-width:767px) {
+    .main-title {
+        font-size: 40px;
+    }
+    .sub-title {
+        font-size: 16px;
+    }
+    .product-section {
+        padding: 30px 0;
+    }
+}
+
+
+/* media query css when the screen size is lss than or equal to 575px */
+
+@media only screen and (max-width:575px) {
+    /* decreasing the font size of main-title at the mobile devices */
+    .main-title {
+        font-size: 33px;
+    }
+    /* removing any padding-bottom for the row class */
+    .product-list .row {
+        padding-bottom: 0px;
+    }
+    /* adjusting the top and bottom padding */
+    .product-section {
+        padding: 30px 0;
+    }
+    /* for the h2 elements inside the content class of parent banner-slider class container */
+    .banner-slider .content h2 {
+        font-size: 34px;
+    }
+    /* decreasing the forn-size of the banner p element */
+    .banner-slider .content p {
+        font-size: 13px;
+    }
+    /* adjusting the font-size of the text inside btn class  */
+    .btn {
+        font-size: 14px;
+    }
+    /* css rule applies to all the span elements that are inside the offer class container */
+    .offer span {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 12px;
+    }
+    /* decrease image height and width from the category section */
+    .category-list .single-product img {
+        width: 50px;
+        height: 55px;
+    }
+    /* decrease font size and margin-top for the title of the category section */
+    .category-list .product-title {
+        font-size: 15px !important;
+        margin-top: 12px !important;
+    }
+    /* adjusting the font-size of the product section title */
+    .product-list .product-title {
+        font-size: 18px;
+    }
+    /* adjusting the font-size of the product section span element that was inside price class */
+    .product-list .price span {
+        font-size: 18px;
+    }
+    /* adjusting the bottom spacing for the add to cart section */
+    .select-options-outer-wrap {
+        bottom: -11px;
+    }
+    .select-options {
+        padding: 5px 11px;
+    }
+    .ads-img img {
+        height: 135px;
+    }
+    .btn-wrap a {
+        font-size: 14px;
+    }
+}
