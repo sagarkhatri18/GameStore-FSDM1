@@ -1,0 +1,18 @@
+{
+   "flase_sale":[
+      {
+         "name":"PS4 GTA5",
+         "original_price":"42.25",
+         "sale":true,
+         "sale_price":"33.99",
+         "image":"assets/images/games/gta5.jpg"
+      },
+      {
+         "name":"Far Cry 5 - PC",
+         "original_price":"45.99",
+         "sale":true,
+         "sale_price":"35",
+         "image":"assets/images/games/farcry.jpg"
+      }
+   ]
+}

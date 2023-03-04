@@ -84,6 +84,7 @@ a {
     background: #fff;
     color: #000;
     z-index: 100;
+    padding: 0px !important;
 }
 
 
@@ -94,6 +95,7 @@ a {
     justify-content: space-between;
     height: 64px;
     align-items: center;
+    padding-top: 10px !important;
 }
 
 
@@ -260,7 +262,7 @@ a {
 
 .banner-slider {
     background-color: #f6f6f9;
-    padding: 60px 0;
+    padding: 46px 0;
 }
 
 .banner-slider .content h2 {
