@@ -216,9 +216,9 @@
                         <td>${data.name}</td>
                         <td>
                             <div class="input-group mb-3">
-                                <span class="decrease input-group-text"><span class="fa fa-minus"></span></span>
+                                <span class="decrease input-group-text"  onclick='decrease(this)'><span class="fa fa-minus"></span></span>
                                 <input type="number" class="form-control" value="${item.count}" data-price=${data.price.sale} min="1">
-                                <span class="increase input-group-text"><span class="fa fa-plus"></span></span>
+                                <span class="increase input-group-text" onclick='increase(this)'><span class="fa fa-plus"></span></span>
                             </div>
                         </td>
                         <td>
@@ -237,18 +237,17 @@
             }
         }
 
+        increase = th => {
+            $(th).siblings('input').val(parseInt($(th).siblings('input').val()) + 1)
+            changePrice(th)
+        }
 
-        $('.decrease').on('click', function() {
-            if ($(this).siblings('input').val() > 1) {
-                $(this).siblings('input').val(parseInt($(this).siblings('input').val()) - 1)
-                changePrice(this)
+        decrease = th => {
+            if ($(th).siblings('input').val() > 1) {
+                $(th).siblings('input').val(parseInt($(th).siblings('input').val()) - 1)
+                changePrice(th)
             }
-        })
-
-        $('.increase').on('click', function() {
-            $(this).siblings('input').val(parseInt($(this).siblings('input').val()) + 1)
-            changePrice(this)
-        })
+        }
 
         changePrice = (th, sideButton = true) => {
             var quantity = parseInt($(th).siblings('input').val());
