@@ -263,6 +263,7 @@ a {
 .banner-slider {
     background-color: #f6f6f9;
     padding: 46px 0;
+    margin-bottom: 17px;
 }
 
 .banner-slider .content h2 {
@@ -384,6 +385,10 @@ input[type="search"]:focus {
 .product-section {
     background-color: #f6f6f9;
     padding-top: 60px;
+}
+
+.product-section a {
+    text-decoration: none !important;
 }
 
 .main-title {
@@ -516,7 +521,7 @@ input[type="search"]:focus {
 .select-options {
     display: inline-block;
     background-color: #98ab3f;
-    padding: 14px 30px;
+    padding: 10px 20px;
     border-radius: 30px;
 }
 
@@ -655,6 +660,7 @@ tr:nth-child(even) {
 .logo-side .image {
     width: 127px;
     height: 45px;
+    color: white;
 }
 
 .logo-side .content {
@@ -692,6 +698,15 @@ tr:nth-child(even) {
 .footer p,
 .footer h3 {
     color: white;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #538607;
+}
+
+.footer .categories ul {
+    padding-left: 0;
 }
 
 
@@ -729,6 +744,18 @@ tr:nth-child(even) {
 
 .cart-image {
     width: 40%;
+}
+
+.cart-items .increase,
+.cart-items .decrease {
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.cart-items table td,
+.cart-items table tr {
+    text-align: center;
 }
 
 

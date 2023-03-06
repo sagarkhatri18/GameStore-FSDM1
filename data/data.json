@@ -1,18 +1,32 @@
 {
-   "flase_sale":[
-      {
-         "name":"PS4 GTA5",
-         "original_price":"42.25",
-         "sale":true,
-         "sale_price":"33.99",
-         "image":"assets/images/games/gta5.jpg"
-      },
-      {
-         "name":"Far Cry 5 - PC",
-         "original_price":"45.99",
-         "sale":true,
-         "sale_price":"35",
-         "image":"assets/images/games/farcry.jpg"
-      }
-   ]
+    "flase_sale": [{
+            "name": "PS4 GTA5",
+            "original_price": "42.25",
+            "sale": true,
+            "sale_price": "33.99",
+            "image": "assets/images/games/gta5.jpg"
+        },
+        {
+            "name": "Far Cry 5 - PC",
+            "original_price": "45.99",
+            "sale": true,
+            "sale_price": "35",
+            "image": "assets/images/games/farcry.jpg"
+        }
+    ],
+    "electronics_sale": [{
+            "name": "BenQ Gaming Monitor",
+            "original_price": "649.99",
+            "sale": true,
+            "sale_price": "499.99",
+            "image": "assets/images/electronics/2.jpg"
+        },
+        {
+            "name": "S107 Gaming Combo",
+            "original_price": "70.00",
+            "sale": true,
+            "sale_price": "64.00",
+            "image": "assets/images/electronics/3.jpeg"
+        }
+    ]
 }
