@@ -153,7 +153,7 @@
                         <div class="categories col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <h3>Other Pages</h3>
                             <ul>
-                                <li><a href="#">Customer Service</a></li>
+                                <li><a href="faq.html">FAQ Section</a></li>
                                 <li><a href="#">Shipping & Delivery</a></li>
                                 <li><a href="#">Warranties</a></li>
                                 <li><a href="#">Pre-Orders</a></li>
@@ -193,10 +193,15 @@
 
         loadCartItems = () => {
             var cart_items = JSON.parse(localStorage.getItem("cart_items"));
-            var sub_total = 0;
+            if (cart_items.length == 0) {
+                document.getElementById("cart_container").innerHTML = '<h5 class="text-center">Sorry, there are no any items in the cart</h5>';
+                return;
+            }
 
-            if (cart_items.length > 0) {
-                var appendData = ``;
+            var sub_total = 0;
+            var appendData = ``;
+
+            if (cart_items.length > 0 && cart_items != null) {
                 cart_items.forEach((item, index) => {
                     var data = JSON.parse(item.data);
                     var price = roundUpTwo((item.count) * (data.price.sale));
@@ -229,62 +234,60 @@
                 $(`#sub_total`).html("$" + roundUpTwo(sub_total));
                 $(`#shipping_cost`).html("$" + shipping_cost);
                 $(`#estimated_total`).html("$" + roundUpTwo(sub_total + shipping_cost));
-            } else {
-                document.getElementById("cart_container").innerHTML = '<h5 class="text-center">Sorry, there are no any items in the cart</h5>';
             }
+        }
 
 
-            $('.decrease').on('click', function() {
-                if ($(this).siblings('input').val() > 1) {
-                    $(this).siblings('input').val(parseInt($(this).siblings('input').val()) - 1)
-                    changePrice(this)
-                }
-            })
-
-            $('.increase').on('click', function() {
-                $(this).siblings('input').val(parseInt($(this).siblings('input').val()) + 1)
+        $('.decrease').on('click', function() {
+            if ($(this).siblings('input').val() > 1) {
+                $(this).siblings('input').val(parseInt($(this).siblings('input').val()) - 1)
                 changePrice(this)
+            }
+        })
+
+        $('.increase').on('click', function() {
+            $(this).siblings('input').val(parseInt($(this).siblings('input').val()) + 1)
+            changePrice(this)
+        })
+
+        changePrice = (th, sideButton = true) => {
+            var quantity = parseInt($(th).siblings('input').val());
+            var price = $(th).siblings('input').attr("data-price");
+
+            if (!sideButton) {
+                quantity = parseInt($(th).val());
+                price = $(th).attr("data-price");
+            }
+
+            var calculated_price = Math.round((quantity * price) * 100) / 100;
+            $(th).parent().parent().siblings('.price').html(calculated_price)
+
+
+            var allPrice = document.getElementById('cart_item_lists').querySelectorAll(".price");
+            var newSubTotalPrice = 0;
+            allPrice.forEach(element => {
+                newSubTotalPrice += parseFloat(element.textContent)
             })
 
-            changePrice = (th, sideButton = true) => {
-                var quantity = parseInt($(th).siblings('input').val());
-                var price = $(th).siblings('input').attr("data-price");
+            $(`#sub_total`).html("$" + Math.round(newSubTotalPrice * 100) / 100);
+            var shipping_cost = newSubTotalPrice > 50 ? 0 : 15;
+            $(`#shipping_cost`).html("$" + shipping_cost);
+            $(`#estimated_total`).html("$" + Math.round((newSubTotalPrice + shipping_cost) * 100) / 100);
+        }
 
-                if (!sideButton) {
-                    quantity = parseInt($(th).val());
-                    price = $(th).attr("data-price");
-                }
-
-                var calculated_price = Math.round((quantity * price) * 100) / 100;
-                $(th).parent().parent().siblings('.price').html(calculated_price)
-
-
-                var allPrice = document.getElementById('cart_item_lists').querySelectorAll(".price");
-                var newSubTotalPrice = 0;
-                allPrice.forEach(element => {
-                    newSubTotalPrice += parseFloat(element.textContent)
-                })
-
-                $(`#sub_total`).html("$" + Math.round(newSubTotalPrice * 100) / 100);
-                var shipping_cost = newSubTotalPrice > 50 ? 0 : 15;
-                $(`#shipping_cost`).html("$" + shipping_cost);
-                $(`#estimated_total`).html("$" + Math.round((newSubTotalPrice + shipping_cost) * 100) / 100);
+        $(document).on('change', 'input[type=number]', function() {
+            if (parseInt($(this).val()) < 1) {
+                $(this).val(1);
             }
+            changePrice(this, false)
+        });
 
-            $(document).on('change', 'input[type=number]', function() {
-                if (parseInt($(this).val()) < 1) {
-                    $(this).val(1);
-                }
-                changePrice(this, false)
-            });
-
-            removeProduct = index => {
-                var copyCartItems = JSON.parse(localStorage.getItem("cart_items"));
-                copyCartItems.splice(index, 1);
-                localStorage.setItem("cart_items", JSON.stringify(copyCartItems));
-                loadCartItems();
-                cartCounter();
-            }
+        removeProduct = index => {
+            var copyCartItems = JSON.parse(localStorage.getItem("cart_items"));
+            copyCartItems.splice(index, 1);
+            localStorage.setItem("cart_items", JSON.stringify(copyCartItems));
+            loadCartItems();
+            cartCounter();
         }
     </script>
 </body>

@@ -5,13 +5,17 @@ window.onload = function() {
 cartCounter = () => {
     var counter = 0;
     var copyCartItems = JSON.parse(localStorage.getItem("cart_items"));
-    (copyCartItems).forEach((element, key) => {
-        counter = counter + parseInt(element.count);
-    });
-    if (parseInt(counter) > 0) {
-        document.getElementById("cart_counter").innerHTML = "- (" + counter + ")";
+    if (copyCartItems != null) {
+        (copyCartItems).forEach((element, key) => {
+            counter = counter + parseInt(element.count);
+        });
+        if (parseInt(counter) > 0) {
+            document.getElementById("cart_counter").innerHTML = "- (" + counter + ")";
+        } else {
+            document.getElementById("cart_counter").innerHTML = "";
+        }
     } else {
-        document.getElementById("cart_counter").innerHTML = "";
+        localStorage.setItem("cart_items", JSON.stringify([]));
     }
 }
 
