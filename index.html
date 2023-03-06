@@ -139,80 +139,7 @@
                     </div>
                 </div>
                 <div class="category-list product-list">
-                    <div class="row">
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-xs-4">
-                            <div class="single-product">
-                                <div class="image">
-                                    <img src="assets/images/category/play-station-logo.svg" alt="Play Station">
-                                </div>
-                                <div class="desc text-center">
-                                    <h4 class="product-title">
-                                        PS5
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-xs-4">
-                            <div class="single-product">
-                                <div class="image">
-                                    <img src="assets/images/category/xbox.svg" alt="XBOX">
-                                </div>
-                                <div class="desc text-center">
-                                    <h4 class="product-title">
-                                        XBOX
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-xs-4">
-                            <div class="single-product">
-                                <div class="image">
-                                    <img src="assets/images/category/gaming-pc.svg" alt="Gaming PC">
-                                </div>
-                                <div class="desc text-center">
-                                    <h4 class="product-title">
-                                        Gaming PC
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-xs-4">
-                            <div class="single-product">
-                                <div class="image">
-                                    <img src="assets/images/category/wear.svg" alt="Apparel">
-                                </div>
-                                <div class="desc text-center">
-                                    <h4 class="product-title">
-                                        Apparel
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-xs-4">
-                            <div class="single-product">
-                                <div class="image">
-                                    <img src="assets/images/category/gift.svg" alt="Gift Cards">
-                                </div>
-                                <div class="desc text-center">
-                                    <h4 class="product-title">
-                                        Gift Cards
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-xs-4">
-                            <div class="single-product">
-                                <div class="image">
-                                    <img src="assets/images/category/fire.svg" alt="New And Trending">
-                                </div>
-                                <div class="desc text-center">
-                                    <h4 class="product-title">
-                                        New & Trending
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="row" id="categories"></div>
                 </div>
             </div>
         </div>
@@ -379,15 +306,24 @@
 
     <script>
         $(() => {
-
-            var appendData = ``;
-
             $.ajax({
-                url: './data/new.json',
+                url: './data/data.json',
                 dataType: 'json',
                 success: function(data) {
-                    data.sales.forEach((element) => {
-                        appendData += `
+                    displayCategories(data.category)
+                    displayMainContent(data.sales)
+                },
+                fail: function(err) {
+                    console.log(err)
+                }
+            });
+        })
+
+        displayMainContent = (data) => {
+            var appendData = ``;
+
+            data.forEach((element) => {
+                appendData += `
                         <section id="flash_sale_section" class="product-section">
                         <div class="product-section-wrap">
                             <div class="container">
@@ -400,59 +336,83 @@
                                 </div>
                                 <div class="product-list">
                                     <div class="row">`;
-                        (element.items).forEach((item) => {
-                            appendData += `
+                (element.items).forEach((item) => {
+                    appendData += `
                                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                                        <a href="description.html?id=${item.id}" onclick='addDesc(${JSON.stringify(item)})'>
-                                            <div class="single-product">
+                                        <div class="single-product">
+                                            <a href="description.html?id=${item.id}" onclick='addDesc(${JSON.stringify(item)})'>
                                                 <div class="image">
                                                     <img src="${item.img.src}" alt="${item.img.alt}">
                                                     <div class="offer">
                                                         <span class="off">-30%</span>`;
-                            if (item.new)
-                                appendData += `<span class="sale">New!</span>`;
-                            appendData += `</div>
+                    if (item.new)
+                        appendData += `<span class="sale">New!</span>`;
+                    appendData += `</div>
                                                 </div>
-                                                <div class="desc text-center">
+                                            </a>
+                                            <div class="desc text-center">
+                                                <a href="description.html?id=${item.id}" onclick='addDesc(${JSON.stringify(item)})'>
                                                     <h4 class="product-title">
                                                         ${item.name}
                                                     </h4>
                                                     <div class="price">
-                                                        <span>$33.99</span>
+                                                        <span>$${item.price.sale}</span>
                                                         <del>
-                                                        $42.25
+                                                        $${item.price.original}
                                                     </del>
                                                     </div>
-                                                    <div class="select-options-outer-wrap">
-                                                        <div class="select-options">
-                                                            <span class="select-options-wrap">
-                                                            <span class="text"> Add To Cart <i class="fa-solid fa-cart-shopping"></i></span>
-                                                            </span>
-                                                        </div>
+                                                </a>
+                                                <div class="select-options-outer-wrap">
+                                                    <div class="select-options">
+                                                        <span class="select-options-wrap">
+                                                        <span class="text" role="button" onclick='addToCart(${JSON.stringify(item)})'> Add To Cart <i class="fa-solid fa-cart-shopping"></i></span>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </div>
                                     </div>
                             `;
-                        });
+                });
 
-                        appendData += `</div>
+                appendData += `</div>
                                 </div>
                         `;
-                    });
-
-                    $("#append").html(appendData);
-                },
-                fail: function(err) {
-                    console.log(err)
-                }
             });
-        })
+
+            $("#append").html(appendData);
+        }
+
+        displayCategories = (data) => {
+            var categoriesDiv = document.getElementById("categories");
+            var appendData = ``;
+
+            data.forEach((element) => {
+                appendData += `
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-xs-4">
+                    <div class="single-product">
+                        <div class="image">
+                            <img src="${element.src}" alt="${element.alt}">
+                        </div>
+                        <div class="desc text-center">
+                            <h4 class="product-title">
+                                ${element.name}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+
+            categoriesDiv.innerHTML = appendData;
+        }
 
         addDesc = (item) => {
-            debugger
             localStorage.setItem("clicked_product", JSON.stringify(item));
+        }
+
+        addToCart = (item) => {
+            checkAndSetItemToCart(item)
         }
     </script>
 </body>

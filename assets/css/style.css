@@ -758,6 +758,11 @@ tr:nth-child(even) {
     text-align: center;
 }
 
+.cart-items .below-contents table th,
+.cart-items .below-contents table td {
+    text-align: end !important;
+}
+
 
 /* --------Responsive CSS Rules -------- */
 
