@@ -1,25 +1,17 @@
 window.onload = function() {
-    let cartList = document.getElementsByClassName("cartLink");
-    for (let cart of cartList) {
-        cart.addEventListener("click", addToCart);
-    }
-
-    setAddToCart();
+    cartCounter();
 };
 
-function addToCart(e) {
-    e.preventDefault();
-    let coun = JSON.parse(window.localStorage.getItem("cart"));
-    let count = coun != null ? ++coun : 1;
-    window.localStorage.setItem("cart", count);
-    document.getElementById("cartCount").innerHTML = count;
-    console.log("clicked");
-}
-
-function setAddToCart() {
-    if (localStorage.getItem("cart_items") == null) {
-        var cart_items = []
-        localStorage.setItem("cart_items", JSON.stringify(cart_items));
+cartCounter = () => {
+    var counter = 0;
+    var copyCartItems = JSON.parse(localStorage.getItem("cart_items"));
+    (copyCartItems).forEach((element, key) => {
+        counter = counter + parseInt(element.count);
+    });
+    if (parseInt(counter) > 0) {
+        document.getElementById("cart_counter").innerHTML = "- (" + counter + ")";
+    } else {
+        document.getElementById("cart_counter").innerHTML = "";
     }
 }
 
@@ -61,4 +53,5 @@ checkAndSetItemToCart = (item = null) => {
 
     localStorage.setItem("cart_items", JSON.stringify(copyCartItems));
     alert("Item get successfully added to the cart")
+    cartCounter();
 }
