@@ -64,7 +64,7 @@
                 <li><a href="index.html">Category</a></li>
                 <li><a href="index.html">About</a></li>
                 <li><a href="index.html">Contact Us</a></li>
-                <li><a href="#">Sign In</a></li>
+                <li><a href="javascript:void(0)" id="sign_in_menu">Sign In</a></li>
                 <li><a href="cart.html">Cart <span id="cart_counter"></span></a></li>
             </ul>
             <h1 class="logo">
@@ -297,6 +297,33 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login Form</h5>
+                    <button type="button" class="mt-0 modal-close-button btn btn-primary" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
@@ -317,6 +344,11 @@
                     console.log(err)
                 }
             });
+
+            $('#sign_in_menu').on('click', function() {
+                $("#exampleModal").modal('show')
+            })
+
         })
 
         displayMainContent = (data) => {

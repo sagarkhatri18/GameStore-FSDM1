@@ -288,7 +288,7 @@ a {
 
 .btn {
     padding: 12px 36px;
-    border-radius: 5px;
+    border-radius: 0 !important;
     color: #fff;
     text-decoration: none;
     font-size: 22px;
@@ -515,6 +515,29 @@ input[type="search"]:focus {
     background-color: #fd5723;
 }
 
+.modal-content {
+    border-radius: 0 !important;
+}
+
+.modal-content input {
+    border-radius: 0 !important;
+}
+
+.modal-content .modal-header {
+    padding-bottom: 9px;
+}
+
+.modal-content .modal-header .modal-close-button {
+    color: black;
+    background: white;
+    border-color: white;
+    padding: 0;
+}
+
+.modal-content .modal-footer {
+    padding: 6px;
+}
+
 
 /* ---select-option-- */
 
@@ -670,6 +693,7 @@ tr:nth-child(even) {
 .form-side input {
     font-family: 'Roboto', sans-serif;
     margin: 30px 0px 15px;
+    border-radius: 0 !important;
 }
 
 .form-side .btn-wrap a {
