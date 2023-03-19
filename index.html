@@ -307,18 +307,20 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label for="email_address">Email address <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="email_address" name="email_address" placeholder="Enter email">
+                        <span class="text-danger"></span>
                     </div>
                     <br>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label for="password">Password <span class="text-danger">*</span></label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        <span class="text-danger"></span>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Login</button>
+                    <button type="button" id="login-submit" class="btn btn-primary">Login</button>
                 </div>
             </div>
         </div>
@@ -345,8 +347,45 @@
                 }
             });
 
+            var credentials = [];
+            $.ajax({
+                url: './data/login.json',
+                dataType: 'json',
+                success: function(data) {
+                    credentials.push(data.users)
+                },
+                fail: function(err) {
+                    console.log(err)
+                }
+            });
+
+
+
             $('#sign_in_menu').on('click', function() {
+                console.log(credentials[0])
                 $("#exampleModal").modal('show')
+            })
+
+            $('#login-submit').on('click', function() {
+                var email = $(`#email_address`);
+                var password = $(`#password`);
+
+                if (email.val() == "") {
+                    email.next().html('This field is required')
+                }
+
+                if (password.val() == "") {
+                    password.next().html('This field is required')
+                }
+
+                var bothMath = false;
+                $.each(credentials[0], function(key, val) {
+                    if (val.email_address == email.val() && val.password == password.val()) {
+                        return bothMath = true;
+                    }
+                });
+
+                console.log(bothMath)
             })
 
         })
