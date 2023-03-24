@@ -360,35 +360,50 @@
             });
 
 
+            var checkLoggedIn = localStorage.getItem('loggedIn')
+
+            $('#sign_in_menu').html(checkLoggedIn === 'true' ? 'Logout' : 'Sign In')
 
             $('#sign_in_menu').on('click', function() {
-                console.log(credentials[0])
-                $("#exampleModal").modal('show')
+                if (checkLoggedIn === 'true') {
+                    logout()
+                } else {
+                    $("#exampleModal").modal('show')
+                }
             })
 
             $('#login-submit').on('click', function() {
                 var email = $(`#email_address`);
                 var password = $(`#password`);
+                var isInputset = !(email.val() == "" || password.val() == "")
 
-                if (email.val() == "") {
-                    email.next().html('This field is required')
-                }
+                email.next().html(email.val() == "" ? 'This field is required' : '')
+                password.next().html(password.val() == "" ? 'This field is required' : '')
 
-                if (password.val() == "") {
-                    password.next().html('This field is required')
-                }
+                if (isInputset) {
+                    var bothMatch = false;
+                    $.each(credentials[0], function(key, val) {
+                        if (val.email_address == email.val() && val.password == password.val()) {
+                            return bothMatch = true;
+                        }
+                    });
 
-                var bothMath = false;
-                $.each(credentials[0], function(key, val) {
-                    if (val.email_address == email.val() && val.password == password.val()) {
-                        return bothMath = true;
+                    password.next().html(!bothMatch ? 'Sorry, wrong e-mail address or password' : '')
+                    if (bothMatch) {
+                        localStorage.setItem('loggedIn', true)
+                        window.location.reload();
+                    } else {
+                        localStorage.setItem('loggedIn', false)
                     }
-                });
-
-                console.log(bothMath)
+                }
             })
 
         })
+
+        function logout() {
+            localStorage.setItem('loggedIn', false)
+            window.location.reload();
+        }
 
         displayMainContent = (data) => {
             var appendData = ``;
