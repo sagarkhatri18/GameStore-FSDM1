@@ -231,50 +231,25 @@
         });
 
         // fetch the particular product detail
-        fetchProductDetail = (product_id) => {
+        const fetchProductDetail = (product_id) => {
             $.ajax({
-                url: './data/data.json',
+                url: `api/admin/product/${product_id}`,
                 dataType: 'json',
                 success: function(data) {
-                    (data.products).forEach(item => {
-                        if (product_id == item.id) {
-                            return findCategoryDetail(item)
-                        }
-                    })
+                    if (data.data != "")
+                        displayContent(data.data)
+                    else
+                        window.location.href = '/index.html'
                 },
                 error: function(err) {
                     console.log(err)
                 }
             });
-        }
-
-        // fetch the category detail from category id
-        findCategoryDetail = item => {
-            $.ajax({
-                url: './data/data.json',
-                dataType: 'json',
-                success: function(data) {
-                    (data.category).forEach((element, key) => {
-                        if (element.id == item.category_id) {
-                            return setCategoryNameAndDisplayContent(item, element)
-                        }
-                    })
-                },
-                error: function(err) {
-                    console.log(err)
-                }
-            });
-        }
-
-        // set category name to the existing JSON object and display the content 
-        setCategoryNameAndDisplayContent = (item, element) => {
-            item['category_name'] = element.name
-            currentProductDetail = item
-            displayContent(item)
         }
 
         // display the content to the webpage
-        displayContent = (product) => {
+        const displayContent = (product) => {
+            currentProductDetail = product
             var appendMainDescription = `
             <tr>
                 <th colspan="2" style="font-size: 23px;">${product.name}</th>

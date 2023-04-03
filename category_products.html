@@ -65,7 +65,9 @@
                 <li><a href="index.html">About</a></li>
                 <li><a href="index.html">Contact Us</a></li>
                 <li><a href="javascript:void(0)" id="sign_in_menu">Sign In</a></li>
-                <li><a href="cart.html">Cart <span id="cart_counter"></span></a></li>
+                <li>
+                    <a href="cart.html"><img src="assets/images/cart.png"></img>Cart <span id="cart_counter"></span></a>
+                </li>
             </ul>
             <h1 class="logo">
                 <a href="index.html"><span class="first_color">Game</span><span class="second_color">Store</span></a>
@@ -187,73 +189,75 @@
 
     <script>
         $(() => {
-
             // get current URL string and search for the category_id params
             var params = new window.URLSearchParams(window.location.search);
             var category_id = params.get('category_id');
             var category_name = params.get('category_name');
-
             $(`#category_title`).html(category_name)
-            findProducts(category_id)
+
+            fetchCategoryProducts(category_id)
         });
 
-        // find list of products having the specific category_id
-        findProducts = (category_id) => {
-            var appendData = ``;
+        // fetch all the products of the category
+        const fetchCategoryProducts = category_id => {
             $.ajax({
-                url: './data/data.json',
+                url: `api/admin/category-products/${category_id}`,
                 dataType: 'json',
                 success: function(data) {
-                    var products = data.products
-                    products.forEach(item => {
-                        if (item.category_id == category_id) {
-                            appendData += `
-                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                                <div class="single-product">
-                                    <a href="javascript:void(0)" onclick='addDesc(${JSON.stringify(item)})'>
-                                        <div class="image">
-                                            <img src="${item.img.src}" alt="${item.img.alt}">
-                                            <div class="offer">
-                                                <span class="off">-30%</span>`;
-                            if (item.new)
-                                appendData += `<span class="sale">New!</span>`;
-                            appendData += `</div>
-                                                            </div>
-                                    </a>
-                                    <div class="desc text-center">
-                                        <a href="javascript:void(0)" onclick='addDesc(${JSON.stringify(item)})'>
-                                            <h4 class="product-title">
-                                                ${item.name}
-                                            </h4>
-                                            <div class="price">
-                                                <span>$${item.price.sale}</span>
-                                                <del>
-                                                $${item.price.original}
-                                            </del>
-                                            </div>
-                                        </a>
-                                        <div class="select-options-outer-wrap">
-                                            <div class="select-options">
-                                                <span class="select-options-wrap">
-                                                <span class="text" role="button" onclick='addToCart(${JSON.stringify(item)})'"> Add To Cart <img src="assets/images/cart.png"></img></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>`
-                        }
-                    })
-
-                    if (appendData == "") {
-                        appendData = '<h4 class="text-center">Sorry, there are no any product in this category</h4>'
-                    }
-                    $("#append_product").html(appendData);
+                    displayContent(data.data)
                 },
-                fail: function(err) {
+                error: function(err) {
                     console.log(err)
                 }
             });
+        }
+
+        // display the content to the webpage
+        const displayContent = data => {
+            var appendData = ``;
+            data.forEach(item => {
+                appendData += `
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                    <div class="single-product">
+                        <a href="description.html?id=${item.id}">
+                            <div class="image">
+                                <img src="${item.img.src}" alt="${item.img.alt}">
+                                <div class="offer">
+                                    <span class="off">-30%</span>`;
+                if (item.new)
+                    appendData += `<span class="sale">New!</span>`;
+                appendData += `</div>
+                                                </div>
+                        </a>
+                        <div class="desc text-center">
+                            <a href="description.html?id=${item.id}">
+                                <h4 class="product-title">
+                                    ${item.name}
+                                </h4>
+                                <div class="price">
+                                    <span>$${item.price.sale}</span>
+                                    <del>
+                                    $${item.price.original}
+                                </del>
+                                </div>
+                            </a>
+                            <div class="select-options-outer-wrap">
+                                <div class="select-options">
+                                    <span class="select-options-wrap">
+                                    <span class="text" role="button" onclick='addToCart(${JSON.stringify(item)})'"> Add To Cart <img src="assets/images/cart.png"></img></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            })
+
+            if (appendData == "") {
+                appendData = '<h4 class="text-center">Sorry, there are no any product in this category</h4>'
+            }
+
+            $("#append_product").html(appendData);
         }
     </script>
 </body>

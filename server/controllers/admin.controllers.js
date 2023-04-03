@@ -1,5 +1,14 @@
 const admin_data = require('../../data/login.json');
-const products = require('../../data/data.json');
+// const products = require('../../data/product.json');
+const fs = require('fs');
+const path = require('path');
+
+// parse the JSON file
+const productJSONPath = path.join(__dirname, '../../data/product.json');
+const productsJSON = JSON.parse(fs.readFileSync(productJSONPath))
+
+const categoryJSONPath = path.join(__dirname, '../../data/category.json');
+const categoryJSON = JSON.parse(fs.readFileSync(categoryJSONPath))
 
 // handle the post request from login form of admin panel
 exports.login = (req, res) => {
@@ -23,16 +32,14 @@ exports.login = (req, res) => {
 
 // fetch all the categories from the JSON file
 exports.categories = (req, res) => {
-    let categories = products.category
-    return res.status(200).json({ success: true, message: 'success', data: categories });
+    return res.status(200).json({ success: true, message: 'success', data: categoryJSON });
 };
 
 // fetch all the products from the JSON file
 exports.products = (req, res) => {
-    let product_lists = products.products
     let returnData = []
-    product_lists.forEach(item => {
-        (products.category).forEach(category => {
+    productsJSON.forEach(item => {
+        (categoryJSON).forEach(category => {
             if (category.id == item.category_id) {
                 item['category_name'] = category.name
                 returnData.push(item)
@@ -41,3 +48,81 @@ exports.products = (req, res) => {
     })
     return res.status(200).json({ success: true, message: 'success', data: returnData });
 };
+
+// return the homepage section data
+exports.homePage = (req, res) => {
+    const homePageJSONPath = path.join(__dirname, '../../data/data.json');
+    const homePageJSON = JSON.parse(fs.readFileSync(homePageJSONPath)).homepage_block
+
+    let returnData = []
+    homePageJSON.forEach(item => {
+        let data = {
+            'title': item.title,
+            'products': []
+        }
+
+        productsJSON.forEach(product => {
+            if ((item.product_id).includes(product.id)) {
+                (categoryJSON).forEach(category => {
+                    if (category.id == product.category_id) {
+                        product['category_name'] = category.name
+                        data.products.push(product)
+                    }
+                })
+            }
+        })
+        returnData.push(data)
+    })
+    return res.status(200).json({ success: true, message: 'success', data: returnData });
+}
+
+// get one single product details
+exports.fetchSingleProduct = (req, res) => {
+    const product_id = req.params.id
+
+    let returnData = ""
+    productsJSON.forEach(item => {
+        if (item.id == product_id) {
+            (categoryJSON).forEach(category => {
+                if (category.id == item.category_id) {
+                    item['category_name'] = category.name
+                    returnData = item
+                }
+            })
+        }
+    })
+    return res.status(200).json({ success: true, message: 'success', data: returnData });
+}
+
+// get all products by category id
+exports.fetchCategoryProducts = (req, res) => {
+    const category_id = req.params.category_id
+
+    let returnData = []
+    productsJSON.forEach(item => {
+        if (item.category_id == category_id) {
+            (categoryJSON).forEach(category => {
+                if (category.id == item.category_id) {
+                    item['category_name'] = category.name
+                    category_name = category.name
+                    returnData.push(item)
+                }
+            })
+        }
+    })
+    return res.status(200).json({ success: true, message: 'success', data: returnData });
+}
+
+// handle the post request of add category
+exports.addCategory = (req, res) => {
+    let addData = {
+        "id": "6",
+        "name": "New and Trending",
+        "alt": "New & Trending",
+        "src": "assets/images/category/fire.svg"
+    }
+    categoryJSON.push(addData)
+
+    fs.writeFileSync(categoryJSONPath, JSON.stringify(categoryJSON));
+    return res.send(categoryJSON)
+}

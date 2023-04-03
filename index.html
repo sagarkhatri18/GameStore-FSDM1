@@ -340,23 +340,42 @@
 
     <script>
         $(() => {
+            fetchCategory()
+            fetchHomePageProducts()
+        })
+
+        // fetch all the categories from the API url 
+        function fetchCategory() {
             $.ajax({
-                url: './data/data.json',
-                dataType: 'json',
+                url: '/api/admin/categories',
+                method: 'get',
                 success: function(data) {
-                    displayCategories(data.category)
-                    displayHomePageContents(data)
+                    displayCategories(data.data)
                 },
                 error: function(err) {
                     console.log(err)
                 }
             });
-        })
+        }
+
+        // fetch all the products from the API url 
+        function fetchHomePageProducts() {
+            $.ajax({
+                url: '/api/admin/homepage',
+                method: 'get',
+                success: function(data) {
+                    displayHomePageContents(data.data)
+                },
+                error: function(err) {
+                    console.log(err)
+                }
+            });
+        }
 
         // display home page contents
         displayHomePageContents = data => {
             var appendData = '';
-            (data.homepage_block).forEach((element) => {
+            data.forEach((element) => {
                 appendData += `
                 <section id="${slugify(element.title)}-section" class="product-section">
                 <div class="product-section-wrap">
@@ -370,45 +389,42 @@
                         </div>
                         <div class="product-list">
                             <div class="row">`;
-                var product_id = element.product_id;
-                (data.products).forEach(product => {
-                    if (product_id.includes(product.id)) {
-                        appendData += `
-                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                                <div class="single-product">
-                                    <a href="description.html?id=${product.id}">
-                                        <div class="image">
-                                            <img src="${product.img.src}" alt="${product.img.alt}">
-                                            <div class="offer">
-                                                <span class="off">-30%</span>`;
-                        if (product.new)
-                            appendData += `<span class="sale">New!</span>`;
-                        appendData += `</div>
-                                        </div>
-                                    </a>
-                                    <div class="desc text-center">
-                                        <a href="description.html?id=${product.id}">
-                                            <h4 class="product-title">
-                                                ${product.name}
-                                            </h4>
-                                            <div class="price">
-                                                <span>$${product.price.sale}</span>
-                                                <del>
-                                                $${product.price.original}
-                                            </del>
-                                            </div>
-                                        </a>
-                                        <div class="select-options-outer-wrap">
-                                            <div class="select-options">
-                                                <span class="select-options-wrap">
-                                                <span class="text" role="button" onclick='addToCart(${JSON.stringify(product)})'"> Add To Cart <img src="assets/images/cart.png"></img></span>
-                                                </span>
-                                            </div>
-                                        </div>
+                (element.products).forEach(product => {
+                    appendData += `
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                        <div class="single-product">
+                            <a href="description.html?id=${product.id}">
+                                <div class="image">
+                                    <img src="${product.img.src}" alt="${product.img.alt}">
+                                    <div class="offer">
+                                        <span class="off">-30%</span>`;
+                    if (product.new)
+                        appendData += `<span class="sale">New!</span>`;
+                    appendData += `</div>
+                                </div>
+                            </a>
+                            <div class="desc text-center">
+                                <a href="description.html?id=${product.id}">
+                                    <h4 class="product-title">
+                                        ${product.name}
+                                    </h4>
+                                    <div class="price">
+                                        <span>$${product.price.sale}</span>
+                                        <del>
+                                        $${product.price.original}
+                                    </del>
+                                    </div>
+                                </a>
+                                <div class="select-options-outer-wrap">
+                                    <div class="select-options">
+                                        <span class="select-options-wrap">
+                                        <span class="text" role="button" onclick='addToCart(${JSON.stringify(product)})'"> Add To Cart <img src="assets/images/cart.png"></img></span>
+                                        </span>
                                     </div>
                                 </div>
-                            </div>`;
-                    }
+                            </div>
+                        </div>
+                    </div>`;
                 })
 
                 appendData += `</div></div></div></div></section>`;

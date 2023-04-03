@@ -46,6 +46,13 @@
                     </tbody>
                 </table>
             </div>
+            <div class="form" id="category-add">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input class="form-control" required type="text" id="name" name="name">
+                </div>
+                <button type="submit" class="float-end btn btn-md btn-primary">Login</button>
+            </div>
         </div>
         <div class="container">
             <h4>Products Lists</h4>
@@ -101,6 +108,11 @@
             $(`#logout`).on('click', function(e) {
                 localStorage.setItem('adminLoggedIn', false)
                 window.location.reload();
+            })
+
+            $(`#category-add`).on('submit', function(e) {
+                e.preventDefault()
+
             })
         })
 

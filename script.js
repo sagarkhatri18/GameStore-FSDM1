@@ -23,6 +23,7 @@ cartCounter = () => {
 roundUpTwo = number => Math.round(number * 100) / 100;
 
 checkAndSetItemToCart = (item = null) => {
+    debugger
     var copyCartItems = JSON.parse(localStorage.getItem("cart_items"));
     var clickedProduct = (item == null) ? localStorage.getItem("clicked_product") : JSON.stringify(item);
 
@@ -79,31 +80,7 @@ function slugify(str) {
 }
 
 // get executed when "Add To Cart" button from the product was clicked
-addToCart = (item) => findCategoryDetail(item)
-
-// fetch the category detail from category id
-findCategoryDetail = item => {
-    $.ajax({
-        url: './data/data.json',
-        dataType: 'json',
-        success: function(data) {
-            (data.category).forEach((element, key) => {
-                if (element.id == item.category_id) {
-                    return setCategoryNameAndAddToCart(item, element)
-                }
-            })
-        },
-        error: function(err) {
-            console.log(err)
-        }
-    });
-}
-
-// set the category name to the existing deatail object
-setCategoryNameAndAddToCart = (item, element) => {
-    item['category_name'] = element.name
-    checkAndSetItemToCart(item)
-}
+addToCart = (item) => checkAndSetItemToCart(item)
 
 
 /* Login features start */
