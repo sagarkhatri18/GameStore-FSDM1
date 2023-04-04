@@ -11,7 +11,9 @@ router.get('/product/:id', adminController.fetchSingleProduct);
 
 router.get('/category-products/:category_id', adminController.fetchCategoryProducts);
 
-router.get('/add-category', adminController.addCategory);
+router.post('/add-category', adminController.addCategory);
+
+router.delete('/category/:category_id', adminController.deleteCategory);
 
 router.get('/homepage', adminController.homePage);
 
