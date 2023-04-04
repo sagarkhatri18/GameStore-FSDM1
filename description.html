@@ -30,9 +30,6 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@200;300;400;500&display=swap" rel="stylesheet">
 
-    <!-- linking to the font awesome link for website icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-
     <!-- importing grid-framework.css -->
     <link rel="stylesheet" href="assets/css/grid.css">
 
@@ -65,7 +62,9 @@
                 <li><a href="index.html">About</a></li>
                 <li><a href="index.html">Contact Us</a></li>
                 <li><a href="javascript:void(0)" id="sign_in_menu">Sign In</a></li>
-                <li><a href="cart.html">Cart <span id="cart_counter"></span></a></li>
+                <li>
+                    <a href="cart.html"><img src="assets/images/cart.png"></img>Cart <span id="cart_counter"></span></a>
+                </li>
             </ul>
             <h1 class="logo">
                 <a href="index.html"><span class="first_color">Game</span><span class="second_color">Store</span></a>
@@ -103,10 +102,10 @@
                                 <table id="product_main_description"></table>
                                 <div class="form-group row">
                                     <div class="col-md-6">
-                                        <button type="button" class="btn btn-success form-control"><i class="fa-solid fa-store"></i> Store Availability</button>
+                                        <button type="button" class="btn btn-lg btn-success form-control"><img src="assets/images/store.svg"></img> Store Availability</button>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="button" id="add_to_cart_button" class="btn btn-success form-control"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</button>
+                                        <button type="button" id="add_to_cart_button" class="btn btn-lg btn-success form-control"><img src="assets/images/cart.svg"></img> Add To Cart</button>
                                     </div>
                                 </div>
                             </div>

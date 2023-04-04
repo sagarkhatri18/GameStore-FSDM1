@@ -650,6 +650,11 @@ tr:nth-child(even) {
     position: relative;
 }
 
+.single-product-desc button img {
+    width: 28px;
+    height: 25px;
+}
+
 .single-product-more-image {
     padding-bottom: 0px !important;
     margin-right: 0px !important;
