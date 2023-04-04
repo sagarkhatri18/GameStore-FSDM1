@@ -18,4 +18,6 @@ app.get("/", (req, res) => {
 // use user api routes.
 app.use('/api/admin', adminPanelAPI);
 
-module.exports = app;
+app.listen(process.env.PORT || 3000, () => {
+    console.log("Server Running at 3000");
+});
