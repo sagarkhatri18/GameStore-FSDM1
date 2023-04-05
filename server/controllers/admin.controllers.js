@@ -35,19 +35,6 @@ exports.categories = (req, res) => {
     return res.status(200).json({ success: true, message: 'success', data: categoryJSON });
 };
 
-// fetch all the products from the JSON file
-exports.products = (req, res) => {
-    let returnData = []
-    productsJSON.forEach(item => {
-        (categoryJSON).forEach(category => {
-            if (category.id == item.category_id) {
-                item['category_name'] = category.name
-                returnData.push(item)
-            }
-        })
-    })
-    return res.status(200).json({ success: true, message: 'success', data: returnData });
-};
 
 // return the homepage section data
 exports.homePage = (req, res) => {
@@ -72,24 +59,6 @@ exports.homePage = (req, res) => {
             }
         })
         returnData.push(data)
-    })
-    return res.status(200).json({ success: true, message: 'success', data: returnData });
-}
-
-// get one single product details
-exports.fetchSingleProduct = (req, res) => {
-    const product_id = req.params.id
-
-    let returnData = ""
-    productsJSON.forEach(item => {
-        if (item.id == product_id) {
-            (categoryJSON).forEach(category => {
-                if (category.id == item.category_id) {
-                    item['category_name'] = category.name
-                    returnData = item
-                }
-            })
-        }
     })
     return res.status(200).json({ success: true, message: 'success', data: returnData });
 }

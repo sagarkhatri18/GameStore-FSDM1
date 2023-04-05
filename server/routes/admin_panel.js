@@ -1,20 +1,29 @@
-const router = require('express').Router();
-const adminController = require('../controllers/admin.controllers');
+const router = require("express").Router();
+const adminController = require("../controllers/admin.controllers");
+const productController = require("../controllers/product.controller");
+const loginController = require("../controllers/login.controller");
 
-router.post('/login', adminController.login);
+router.post("/login", loginController.login);
 
-router.get('/categories', adminController.categories);
+router.get("/categories", adminController.categories);
 
-router.get('/products', adminController.products);
+router.get("/products", productController.products);
 
-router.get('/product/:id', adminController.fetchSingleProduct);
+router.post("/add-product", productController.addProduct);
 
-router.get('/category-products/:category_id', adminController.fetchCategoryProducts);
+router.delete("/product/:product_id", productController.addProduct);
 
-router.post('/add-category', adminController.addCategory);
+router.get("/product/:id", productController.fetchSingleProduct);
 
-router.delete('/category/:category_id', adminController.deleteCategory);
+router.get(
+  "/category-products/:category_id",
+  adminController.fetchCategoryProducts
+);
 
-router.get('/homepage', adminController.homePage);
+router.post("/add-category", adminController.addCategory);
+
+router.delete("/category/:category_id", adminController.deleteCategory);
+
+router.get("/homepage", adminController.homePage);
 
 module.exports = router;
