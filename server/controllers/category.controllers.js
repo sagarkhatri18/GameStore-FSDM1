@@ -1,5 +1,3 @@
-const admin_data = require('../../data/login.json');
-// const products = require('../../data/product.json');
 const fs = require('fs');
 const path = require('path');
 
@@ -10,58 +8,12 @@ let productsJSON = JSON.parse(fs.readFileSync(productJSONPath))
 const categoryJSONPath = path.join(__dirname, '../../data/category.json');
 let categoryJSON = JSON.parse(fs.readFileSync(categoryJSONPath))
 
-// handle the post request from login form of admin panel
-exports.login = (req, res) => {
-    let admin = admin_data.admin
-
-    let username = req.body.username;
-    let password = req.body.password;
-
-    let bothMatch = false;
-    admin.forEach(element => {
-        if (element.username == username && element.password == password) {
-            return bothMatch = true;
-        }
-    });
-
-    if (bothMatch)
-        return res.status(200).json({ success: true, message: 'Successfully loggedin', data: [{ 'username': username }] });
-    else
-        return res.status(400).json({ success: false, message: 'Sorry, wrong e-mail address or password' });
-};
 
 // fetch all the categories from the JSON file
 exports.categories = (req, res) => {
     return res.status(200).json({ success: true, message: 'success', data: categoryJSON });
 };
 
-
-// return the homepage section data
-exports.homePage = (req, res) => {
-    const homePageJSONPath = path.join(__dirname, '../../data/data.json');
-    const homePageJSON = JSON.parse(fs.readFileSync(homePageJSONPath)).homepage_block
-
-    let returnData = []
-    homePageJSON.forEach(item => {
-        let data = {
-            'title': item.title,
-            'products': []
-        }
-
-        productsJSON.forEach(product => {
-            if ((item.product_id).includes(product.id)) {
-                (categoryJSON).forEach(category => {
-                    if (category.id == product.category_id) {
-                        product['category_name'] = category.name
-                        data.products.push(product)
-                    }
-                })
-            }
-        })
-        returnData.push(data)
-    })
-    return res.status(200).json({ success: true, message: 'success', data: returnData });
-}
 
 // get all products by category id
 exports.fetchCategoryProducts = (req, res) => {

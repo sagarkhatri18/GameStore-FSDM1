@@ -223,10 +223,13 @@
 
         $(`#add-product`).on("click", function (e) {
           e.preventDefault();
+          deleteProduct(9);
+          /*
           // TODO:  this item will be made from form data
-          let item = {
+           let item = {
+            id: "9",
             category_id: "2",
-            name: "GTA 5 - PC",
+            name: "GTA 5 x - PC",
             brand: "Rockstar",
             new: true,
             price: {
@@ -242,7 +245,7 @@
             },
           };
           let jsonString = JSON.stringify(item);
-          addProduct(jsonString);
+          addProduct(jsonString); */
         });
       });
 
@@ -251,6 +254,30 @@
           url: "/api/admin/add-product",
           data: formData,
           method: "POST",
+          contentType: "application/json",
+          success: function (data) {
+            console.log(data, " x res");
+            // window.location.reload();
+          },
+          error: function (err) {
+            console.log(err.responseJSON.data);
+            $.toast({
+              heading: "Failed",
+              text: err.responseJSON.message,
+              showHideTransition: "slide",
+              icon: "error",
+              position: "top-right",
+              allowToastClose: true,
+            });
+          },
+        });
+      }
+
+      // delete the selected product
+      function deleteProduct(product_id) {
+        $.ajax({
+          url: `/api/admin/product/${product_id}`,
+          method: "DELETE",
           success: function (data) {
             console.log(data, " x res");
             // window.location.reload();

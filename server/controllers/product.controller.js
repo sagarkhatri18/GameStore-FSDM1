@@ -50,17 +50,9 @@ exports.fetchSingleProduct = (req, res) => {
 exports.addProduct = (req, res) => {
   try {
     let reqBody = req.body;
-    console.log(reqBody, " jsonString");
-    let temp = JSON.parse(reqBody);
-    console.log(temp, " json");
-    let resL = setProductItem(temp);
-    /* Returning here temporarily for testing whether the json is valid */
-    return res
-      .status(200)
-      .json({ success: true, message: "success", data: reqBody });
+    let id = reqBody.id;
     // add new record
-    // let reqBody = req.body;
-    if (reqBody.product_id == "") {
+    if (id == "" || id == undefined || id == null) {
       var newId = 0;
       productsJSON.forEach((item) => {
         newId = parseInt(item.id);
@@ -78,13 +70,14 @@ exports.addProduct = (req, res) => {
     else {
       let returnData = [];
       productsJSON.forEach((item) => {
-        if (item.id == reqBody.product_id) {
-          item = setProductItem(item);
+        if (item.id == id) {
+          item = setProductItem(reqBody);
+          item.id = id; 
         }
         returnData.push(item);
       });
 
-      fs.writeFileSync(categoryJSONPath, JSON.stringify(returnData));
+      fs.writeFileSync(productJSONPath, JSON.stringify(returnData));
     }
 
     return res.status(200).json({ success: true, message: "success" });
@@ -97,6 +90,20 @@ exports.addProduct = (req, res) => {
   }
 };
 
+// delete the selected category from JSON file
+exports.deleteProduct = (req, res) => {
+  let addData = [];
+  productsJSON.forEach((item) => {
+    if (item.id != req.params.product_id) {
+      addData.push(item);
+    }
+  });
+  fs.writeFileSync(productJSONPath, JSON.stringify(addData));
+  productsJSON = JSON.parse(fs.readFileSync(productJSONPath));  // sync the updated file
+  return res.status(200).json({ success: true, message: "success" });
+};
+
+// Make product object
 const setProductItem = (reqBody) => {
   console.log(reqBody, " reqBody");
   let reqSpecification = reqBody.specification;
@@ -107,7 +114,7 @@ const setProductItem = (reqBody) => {
     new: reqBody.new,
     img: {
       alt: slugify(reqBody.name),
-      src: reqBody.src,
+      src: "assets/images/category/default.jpg",
     },
     price: {
       original: reqBody.price.original,
@@ -124,19 +131,6 @@ const setProductItem = (reqBody) => {
   };
   console.log(item, " item");
   return item;
-};
-
-// delete the selected category from JSON file
-exports.deleteProduct = (req, res) => {
-  let addData = [];
-  productsJSON.forEach((item) => {
-    if (item.id != req.params.products_id) {
-      addData.push(item);
-    }
-  });
-  fs.writeFileSync(productJSONPath, JSON.stringify(addData));
-  productsJSON = JSON.parse(fs.readFileSync(productJSONPath)); // sync the updated file
-  return res.status(200).json({ success: true, message: "success" });
 };
 
 // convert the string to slug
