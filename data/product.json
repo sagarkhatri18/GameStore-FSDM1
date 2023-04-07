@@ -152,22 +152,5 @@
       "Release Date": "2022-04-11"
     },
     "category_name": "Gaming PC"
-  },
-  {
-    "category_id": "3",
-    "category_name": "Gaming PC",
-    "name": "test",
-    "brand": "",
-    "new": true,
-    "img": { "alt": "test", "src": "assets/images/category/default.jpg" },
-    "price": { "original": "", "sale": "90" },
-    "description": "",
-    "specification": {
-      "product_code": "",
-      "ideal_for": ["1", "4", "6"],
-      "Genre": "",
-      "release_date": ""
-    },
-    "id": "9"
   }
 ]
