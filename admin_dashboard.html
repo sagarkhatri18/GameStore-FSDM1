@@ -384,7 +384,7 @@
           let id = category.id + "category";
           data += `
           <div class="form-check ">
-            <input class="form-check-input" type="checkbox" name="ideal_for" value="${category.name}" id="${id}">
+            <input class="form-check-input" type="checkbox" name="ideal_for" value="${category.id}" id="${id}">
             <label class="form-check-label" for="${id}">
               ${category.name}
               </label>
@@ -425,10 +425,8 @@
           url: "/api/admin/add-product",
           data: formData,
           method: "POST",
-          // contentType: "application/json",
           success: function (data) {
-            console.log(data, " x res");
-            // window.location.reload();
+            window.location.reload();
           },
           error: function (err) {
             console.log(err.responseJSON.data);
@@ -566,7 +564,6 @@
           url: `api/admin/product/${id}`,
           dataType: "json",
           success: function (data) {
-            console.log(data, " x success product edit");
             fill_product_modal(data.data);
           },
           error: function (err) {
@@ -589,9 +586,18 @@
         if (product.new) $(`#Yes`).prop("checked", true);
         else $(`#No`).prop("checked", true);
         $("#category_select").val(product.category_id);
-        product_specification.ideal_for.forEach((ideal) => {
-          $(`#${ideal}category`).attr("checked", true);
-        });
+        let ideal_for = product_specification.ideal_for;
+        let checkgp = $("#check-group").val();
+        if ($("#check-group").val() == "checkd")
+          categories.forEach((category) => {
+            $(`#${category.id}category`).attr("checked", false);
+          });
+        if (ideal_for?.length > 0)
+          ideal_for.forEach((ideal) => {
+            $(`#${ideal}category`).attr("checked", true);
+            $("#check-group").val("checkd");
+          });
+
         $(`#addProductModal`).modal("show");
       };
 

@@ -34,24 +34,24 @@
     "category_name": "PC Games"
   },
   {
-    "id": "3",
     "category_id": "1",
+    "category_name": "PS4/PS5",
     "name": "Red Dead Redemption 2",
     "brand": "Rockstar",
     "new": true,
     "img": {
-      "alt": "Red Dead Redemption 2",
+      "alt": "red-dead-redemption-2",
       "src": "assets/images/games/red_dead.jpg"
     },
-    "price": { "original": 30, "sale": 19.99 },
+    "price": { "original": "30", "sale": "19.99" },
     "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
     "specification": {
-      "Product Code": "769864 Playd",
-      "Ideal For": "PS4, PS5",
+      "product_code": "769864 Playd",
+      "ideal_for": ["1", "5"],
       "Genre": "Racing",
-      "Release Date": "2022-04-11"
+      "release_date": "2022-04-11"
     },
-    "category_name": "PS4/PS5"
+    "id": "3"
   },
   {
     "id": "4",
@@ -164,7 +164,7 @@
     "description": "",
     "specification": {
       "product_code": "",
-      "ideal_for": [1, 4, 5],
+      "ideal_for": ["1", "4", "6"],
       "Genre": "",
       "release_date": ""
     },

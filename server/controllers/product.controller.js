@@ -113,6 +113,10 @@ const setProductItem = (reqBody) => {
       category_name = category.name;
     }
   });
+  let ideal_for = reqBody.ideal_for;
+  if (ideal_for != null || ideal_for != undefined)
+    if (ideal_for.length > 0)
+      ideal_for.forEach((ideal1) => parseInt(ideal_for));
   let item = {
     category_id: reqBody.category_id,
     category_name,
