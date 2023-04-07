@@ -243,7 +243,7 @@
           success: function (data) {
             categories = data.data;
             displayCategoryData(categories);
-            display_data();
+            display_product_modal();
           },
           error: function (err) {
             console.log(err);
@@ -319,7 +319,7 @@
         });
       });
 
-      const display_data = () => {
+      const display_product_modal = () => {
         let product_array = [
           { field: "product_name", placeholder: "Product Name" },
           { field: "brand", placeholder: "Brand" },
@@ -337,7 +337,7 @@
         product_array.forEach((product) => {
           append_data += `
           <div class="form-group">
-            <label for="${product.field}">${product.placeholder} 
+            <label for="${product.field}">${product.placeholder}
               <span class="text-danger">*</span>
             </label>
               <input
@@ -357,7 +357,7 @@
       const select_menu = () => {
         let append_data = `
         <div class="form-group">
-          <select class="form-select" name="category_id" aria-label="Default select example">
+          <select id="category_select" class="form-select" name="category_id" aria-label="Default select example">
             <option selected>Select the category</option>
         `;
         categories.forEach((category) => {
@@ -367,7 +367,7 @@
         });
         append_data += `
           </select>
-        </div>               
+        </div>
         `;
         return append_data;
       };
@@ -375,7 +375,7 @@
       const checked_group = () => {
         let data = `
         <div id="check-group" class="form-group">
-            <h4>Ideal for 
+            <h4>Ideal for
               <span class="text-danger">*</span>
             </h4>
             <br/>
@@ -518,10 +518,11 @@
       function displayProductData(data) {
         appendData = "";
         data.forEach((item, index) => {
+          let id = item.id;
           appendData += `
               <tr>
                   <th scope="row">${index + 1}</th>
-                  <td>${item.id}</td>
+                  <td>${id}</td>
                   <td>${item.category_name}</td>
                   <td>${item.name}</td>
                   <td>${item.brand}</td>
@@ -530,12 +531,8 @@
                       <img src="${item.img.src}" alt=${item.img.alt}/>
                   </td>
                   <td>
-                      <a href="javascript:void(0)" onClick="deleteCategory('${
-                        item.id
-                      }')">[Delete]</a>&nbsp; | &nbsp;
-                      <a href="javascript:void(0)" onClick="updateCategory('${
-                        item.id
-                      }', '${item.name}')">[Edit]</a>
+                      <a href="javascript:void(0)" onClick="deleteProduct('${id}')">[Delete]</a>&nbsp; | &nbsp;
+                      <a href="javascript:void(0)" onClick="updateProduct('${id}')">[Edit]</a>
                   </td>
               </tr>
               `;
@@ -563,6 +560,40 @@
           },
         });
       }
+
+      const updateProduct = (id) => {
+        $.ajax({
+          url: `api/admin/product/${id}`,
+          dataType: "json",
+          success: function (data) {
+            console.log(data, " x success product edit");
+            fill_product_modal(data.data);
+          },
+          error: function (err) {
+            console.log(err);
+          },
+        });
+      };
+
+      const fill_product_modal = (product) => {
+        let product_specification = product.specification;
+        $(`#product_id`).val(product.id);
+        $(`#product_name`).val(product.name);
+        $(`#brand`).val(product.brand);
+        $(`#original_price`).val(product.price.original);
+        $(`#sale_price`).val(product.price.sale);
+        $(`#description`).val(product.description);
+        $(`#product_code`).val(product_specification["Product Code"]);
+        $(`#release_date`).val(product_specification["Release Date"]);
+        $(`#genre`).val(product_specification.Genre);
+        if (product.new) $(`#Yes`).prop("checked", true);
+        else $(`#No`).prop("checked", true);
+        $("#category_select").val(product.category_id);
+        product_specification.ideal_for.forEach((ideal) => {
+          $(`#${ideal}category`).attr("checked", true);
+        });
+        $(`#addProductModal`).modal("show");
+      };
 
       // update the selected category
       function updateCategory(category_id, name) {
