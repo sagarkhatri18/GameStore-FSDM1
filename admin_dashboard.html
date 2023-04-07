@@ -75,8 +75,21 @@
         </div>
       </div>
       <div class="container">
-        <h4>Products Lists</h4>
-        <button id="add-product">Add Product</button>
+        <div class="row">
+          <div class="col-6">
+            <h4>Products Lists</h4>
+          </div>
+
+          <div class="col-6 text-end">
+            <button
+              type="button"
+              id="add-product"
+              class="btn btn-sm btn-success"
+            >
+              Add Product
+            </button>
+          </div>
+        </div>
         <table class="products-lists-table table">
           <thead>
             <tr>
@@ -87,6 +100,7 @@
               <th scope="col">Brand</th>
               <th scope="col">Price</th>
               <th scope="col">Image</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody id="products-lists"></tbody>
@@ -165,14 +179,71 @@
       </div>
     </div>
 
+    <!-- Add New Product Modal -->
+    <div
+      class="modal fade"
+      id="addProductModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addProductModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <form id="add_product_form" method="post">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addProductModalLabel">
+                Add New Product
+              </h5>
+              <button
+                type="button"
+                class="mt-0 modal-close-button btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                &times;
+              </button>
+            </div>
+            <div class="modal-body" id="product-fields">
+              <input
+                type="hidden"
+                class="form-control"
+                id="product_id"
+                name="product_id"
+                value=""
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                id="add_product_submit"
+                class="btn btn-primary"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <script>
+      let categories = [];
       $(document).ready(function () {
         // api call to load categories data
         $.ajax({
           url: "/api/admin/categories",
           method: "GET",
           success: function (data) {
-            displayCategoryData(data.data);
+            categories = data.data;
+            displayCategoryData(categories);
+            display_data();
           },
           error: function (err) {
             console.log(err);
@@ -223,38 +294,138 @@
 
         $(`#add-product`).on("click", function (e) {
           e.preventDefault();
-          deleteProduct(9);
-          /*
-          // TODO:  this item will be made from form data
-           let item = {
-            id: "9",
-            category_id: "2",
-            name: "GTA 5 x - PC",
-            brand: "Rockstar",
-            new: true,
-            price: {
-              original: 34.54,
-              sale: 33.23,
-            },
-            description: "GTA for pc",
-            specification: {
-              product_code: "769864 Playd",
-              ideal_for: "PC, PS4, PS5",
-              Genre: "Racing",
-              release_date: "2022-04-11",
-            },
-          };
-          let jsonString = JSON.stringify(item);
-          addProduct(jsonString); */
+          $(`#name`).val("");
+          $(`#product_id`).val("");
+          $(`#addProductModal`).modal("show");
+        });
+
+        $(`#add_product_submit`).on("click", (e) => {
+          e.preventDefault();
+
+          if ($(`#product_name`).val().trim() == "") {
+            $.toast({
+              heading: "Failed",
+              text: "Product name is required",
+              showHideTransition: "slide",
+              icon: "error",
+              position: "top-right",
+              allowToastClose: true,
+            });
+            return false;
+          }
+
+          let formData = $(`#add_product_form`).serializeArray();
+          addProduct(formData);
         });
       });
+
+      const display_data = () => {
+        let product_array = [
+          { field: "product_name", placeholder: "Product Name" },
+          { field: "brand", placeholder: "Brand" },
+          { field: "original_price", placeholder: "Original Price" },
+          { field: "sale_price", placeholder: "Sale Price" },
+          { field: "description", placeholder: "Description" },
+          { field: "product_code", placeholder: "Product Code" },
+          { field: "genre", placeholder: "Genre" },
+          { field: "release_date", placeholder: "Release Date" },
+        ];
+        let append_data = "";
+        append_data += select_menu();
+        append_data += checked_group();
+        append_data += radio_group();
+        product_array.forEach((product) => {
+          append_data += `
+          <div class="form-group">
+            <label for="${product.field}">${product.placeholder} 
+              <span class="text-danger">*</span>
+            </label>
+              <input
+              type="text"
+              class="form-control"
+              id="${product.field}"
+              required
+              name="${product.field}"
+              placeholder="Enter ${product.placeholder}"
+              />
+              <span class="text-danger"></span>
+          </div>`;
+        });
+        $("#product-fields").append(append_data);
+      };
+
+      const select_menu = () => {
+        let append_data = `
+        <div class="form-group">
+          <select class="form-select" name="category_id" aria-label="Default select example">
+            <option selected>Select the category</option>
+        `;
+        categories.forEach((category) => {
+          append_data += `
+            <option value="${category.id}">${category.name}</option>
+            `;
+        });
+        append_data += `
+          </select>
+        </div>               
+        `;
+        return append_data;
+      };
+
+      const checked_group = () => {
+        let data = `
+        <div id="check-group" class="form-group">
+            <h4>Ideal for 
+              <span class="text-danger">*</span>
+            </h4>
+            <br/>
+            `;
+        categories.forEach((category) => {
+          let id = category.id + "category";
+          data += `
+          <div class="form-check ">
+            <input class="form-check-input" type="checkbox" name="ideal_for" value="${category.name}" id="${id}">
+            <label class="form-check-label" for="${id}">
+              ${category.name}
+              </label>
+          </div>`;
+        });
+        data += "</div>";
+        return data;
+      };
+
+      const radio_group = () => {
+        let name = "new";
+        let yes = "Yes";
+        let no = "No";
+        let data = `
+        <div id="radio-group" class="form-group">
+          <h4>Is it the new item?
+            <span class="text-danger">*</span>
+          </h4>
+          <div class="form-check ">
+            <input class="form-check-input" type="radio" name="${name}" value="true" id="${yes}">
+              <label class="form-check-label" for="${yes}">
+                ${yes}
+              </label>
+          </div>
+          <div class="form-check ">
+            <input class="form-check-input" type="radio" name="${name}" value="false" id="${no}">
+              <label class="form-check-label" for="${no}">
+                ${no}
+              </label>
+          </div>
+        </div>
+        `;
+        return data;
+      };
 
       function addProduct(formData) {
         $.ajax({
           url: "/api/admin/add-product",
           data: formData,
           method: "POST",
-          contentType: "application/json",
+          // contentType: "application/json",
           success: function (data) {
             console.log(data, " x res");
             // window.location.reload();
@@ -357,6 +528,14 @@
                   <td>${item.price.sale}</td>
                   <td>
                       <img src="${item.img.src}" alt=${item.img.alt}/>
+                  </td>
+                  <td>
+                      <a href="javascript:void(0)" onClick="deleteCategory('${
+                        item.id
+                      }')">[Delete]</a>&nbsp; | &nbsp;
+                      <a href="javascript:void(0)" onClick="updateCategory('${
+                        item.id
+                      }', '${item.name}')">[Edit]</a>
                   </td>
               </tr>
               `;

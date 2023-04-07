@@ -50,7 +50,7 @@ exports.fetchSingleProduct = (req, res) => {
 exports.addProduct = (req, res) => {
   try {
     let reqBody = req.body;
-    let id = reqBody.id;
+    let id = reqBody.product_id;
     // add new record
     if (id == "" || id == undefined || id == null) {
       var newId = 0;
@@ -72,7 +72,7 @@ exports.addProduct = (req, res) => {
       productsJSON.forEach((item) => {
         if (item.id == id) {
           item = setProductItem(reqBody);
-          item.id = id; 
+          item.id = id;
         }
         returnData.push(item);
       });
@@ -99,34 +99,40 @@ exports.deleteProduct = (req, res) => {
     }
   });
   fs.writeFileSync(productJSONPath, JSON.stringify(addData));
-  productsJSON = JSON.parse(fs.readFileSync(productJSONPath));  // sync the updated file
+  productsJSON = JSON.parse(fs.readFileSync(productJSONPath)); // sync the updated file
   return res.status(200).json({ success: true, message: "success" });
 };
 
 // Make product object
 const setProductItem = (reqBody) => {
   console.log(reqBody, " reqBody");
-  let reqSpecification = reqBody.specification;
+  let is_new = reqBody.new?.toLowerCase?.() === "true";
+  let category_name = "";
+  categoryJSON.forEach((category) => {
+    if (category.id == reqBody.category_id) {
+      category_name = category.name;
+    }
+  });
   let item = {
     category_id: reqBody.category_id,
-    name: reqBody.name,
+    category_name,
+    name: reqBody.product_name,
     brand: reqBody.brand,
-    new: reqBody.new,
+    new: is_new,
     img: {
-      alt: slugify(reqBody.name),
+      alt: slugify(reqBody.product_name),
       src: "assets/images/category/default.jpg",
     },
     price: {
-      original: reqBody.price.original,
-      sale: reqBody.price.sale,
+      original: reqBody.original_price,
+      sale: reqBody.sale_price,
     },
     description: reqBody.description,
-    // TODO
     specification: {
-      product_code: reqSpecification.product_code,
-      ideal_for: reqSpecification.ideal_for,
-      Genre: reqSpecification.Genre,
-      release_date: reqSpecification.release_date,
+      product_code: reqBody.product_code,
+      ideal_for: reqBody.ideal_for,
+      Genre: reqBody.genre,
+      release_date: reqBody.release_date,
     },
   };
   console.log(item, " item");
