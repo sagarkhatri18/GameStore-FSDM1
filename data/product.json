@@ -1,6 +1,7 @@
 [
   {
     "id": "1",
+    "stock": 2,
     "category_id": "1",
     "name": "PS4 GTA5",
     "brand": "Rockstar",
@@ -18,6 +19,7 @@
   },
   {
     "id": "2",
+    "stock": 2,
     "category_id": "2",
     "name": "Far Cry 5 - PC",
     "brand": "Rockstar",
@@ -51,10 +53,12 @@
       "Genre": "Racing",
       "release_date": "2022-04-11"
     },
-    "id": "3"
+    "id": "3",
+    "stock": 2
   },
   {
     "id": "4",
+    "stock": 2,
     "category_id": "1",
     "name": "Watch Dogs Legion PS5",
     "brand": "Rockstar",
@@ -75,6 +79,7 @@
   },
   {
     "id": "5",
+    "stock": 2,
     "category_id": "3",
     "name": "BenQ Gaming Monitor",
     "brand": "BenQ",
@@ -95,6 +100,7 @@
   },
   {
     "id": "6",
+    "stock": 2,
     "category_id": "4",
     "name": "S107 Gaming Combo",
     "brand": "Logitech",
@@ -115,6 +121,7 @@
   },
   {
     "id": "7",
+    "stock": 2,
     "category_id": "4",
     "name": "Razer Gaming Headset",
     "brand": "Razer",
@@ -135,6 +142,7 @@
   },
   {
     "id": "8",
+    "stock": 2,
     "category_id": "3",
     "name": "HAJAAN Gaming PC",
     "brand": "Razer",
