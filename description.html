@@ -24,9 +24,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- importing required fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+        rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,200;1,300&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,200;1,300&display=swap"
+        rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@200;300;400;500&display=swap" rel="stylesheet">
 
@@ -102,10 +106,13 @@
                                 <table id="product_main_description"></table>
                                 <div class="form-group row">
                                     <div class="col-md-6">
-                                        <button type="button" class="btn btn-lg btn-success form-control"><img src="assets/images/store.svg"></img> Store Availability</button>
+                                        <button type="button" class="btn btn-lg btn-success form-control"><img
+                                                src="assets/images/store.svg"></img> Store Availability</button>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="button" id="add_to_cart_button" class="btn btn-lg btn-success form-control"><img src="assets/images/cart.svg"></img> Add To Cart</button>
+                                        <button type="button" id="add_to_cart_button"
+                                            class="btn btn-lg btn-success form-control"><img
+                                                src="assets/images/cart.svg"></img> Add To Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +142,8 @@
                                 <h2>GameStore</h2>
                             </div>
                             <div class="content">
-                                <p>We provide quality products and are authorized gaming suppliers.We provide quality products and are authorized gaming suppliers.</p>
+                                <p>We provide quality products and are authorized gaming suppliers.We provide quality
+                                    products and are authorized gaming suppliers.</p>
                             </div>
                         </div>
                         <div class="categories col-xl-3 col-lg-3 col-md-6 col-sm-6">
@@ -159,7 +167,8 @@
                         </div>
                         <div class="form-side categories col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <h3>Newsletter</h3>
-                            <p>We provide quality products and are authorized gaming suppliers. We provide quality products and are authorized gaming suppliers.</p>
+                            <p>We provide quality products and are authorized gaming suppliers. We provide quality
+                                products and are authorized gaming suppliers.</p>
                             <input type="text" class="form-control text-center" placeholder="Type Your Email">
                             <div class="btn-wrap text-center">
                                 <a href="#">SUBSCRIBE TO NEWSLETTER</a>
@@ -179,23 +188,27 @@
     </div>
 
     <!-- Login Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Login Form</h5>
-                    <button type="button" class="mt-0 modal-close-button btn btn-primary" data-bs-dismiss="modal">&times;</button>
+                    <button type="button" class="mt-0 modal-close-button btn btn-primary"
+                        data-bs-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="email_address">Email address <span class="text-danger">*</span></label>
-                        <input type="email" class="form-control" id="email_address" name="email_address" placeholder="Enter email">
+                        <input type="email" class="form-control" id="email_address" name="email_address"
+                            placeholder="Enter email">
                         <span class="text-danger"></span>
                     </div>
                     <br>
                     <div class="form-group">
                         <label for="password">Password <span class="text-danger">*</span></label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Password">
                         <span class="text-danger"></span>
                     </div>
                 </div>
@@ -221,7 +234,7 @@
             // get current URL string and search for the category_id params
             var params = new window.URLSearchParams(window.location.search);
             var product_id = params.get('id');
-            fetchProductDetail(product_id)
+            fetchProductDetail(product_id);
             var currentProductDetail = "";
         });
 
@@ -234,13 +247,13 @@
             $.ajax({
                 url: `api/admin/product/${product_id}`,
                 dataType: 'json',
-                success: function(data) {
+                success: function (data) {
                     if (data.data != "")
                         displayContent(data.data)
                     else
                         window.location.href = '/index.html'
                 },
-                error: function(err) {
+                error: function (err) {
                     console.log(err)
                 }
             });
@@ -283,15 +296,39 @@
             $("#small_images").html(smallImageSection);
 
             var appendProductSpec = ``;
-            $.each(product.specification, function(key, value) {
+            $.each(product.specification, async function (key, value) {
+                // if (key == "Ideal For") {
+                //     await getCategories(value);
+                // }
                 appendProductSpec += `
                 <tr>
                     <th>${key}</th>
                     <th>${value}</th>
-                </tr>`;
+                    </tr>`;
             });
             $("#product_specification").html(appendProductSpec)
         }
+
+        // const getCategories = async (ideals) => {
+        //     debugger;
+        //     var categories = localStorage.getItem("categories");
+        //     if (categories == null || categories.length < 1 || categories == undefined) {
+        //         $.ajax({
+        //             url: "/api/admin/categories",
+        //             method: "GET",
+        //             success: function (data) {
+        //                 categories = data.data;
+        //                 localStorage.setItem("categories", categories);
+        //             },
+        //             error: function (err) {
+        //                 console.log(err);
+        //             },
+        //         });
+        //     }
+        //     ideals.forEach(ideal => {
+        //         debugger;
+        //     });
+        // }
     </script>
 </body>
 <!-- body close -->

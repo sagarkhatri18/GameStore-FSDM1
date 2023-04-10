@@ -51,6 +51,7 @@ exports.addProduct = (req, res) => {
   try {
     let reqBody = req.body;
     let id = reqBody.product_id;
+    let src = reqBody.img_src;
     // add new record
     if (id == "" || id == undefined || id == null) {
       var newId = 0;
@@ -61,7 +62,8 @@ exports.addProduct = (req, res) => {
       newId++;
 
       let item = setProductItem(reqBody);
-      item.id = newId.toString();
+      item.id = newId.toString();  
+      item.img.src = "assets/images/category/default.jpg";
 
       productsJSON.push(item);
       fs.writeFileSync(productJSONPath, JSON.stringify(productsJSON));
@@ -70,9 +72,10 @@ exports.addProduct = (req, res) => {
     else {
       let returnData = [];
       productsJSON.forEach((item) => {
-        if (item.id == id) {
+        if (item.id == id) { 
           item = setProductItem(reqBody);
           item.id = id;
+          item.img.src = src;
         }
         returnData.push(item);
       });
@@ -105,7 +108,6 @@ exports.deleteProduct = (req, res) => {
 
 // Make product object
 const setProductItem = (reqBody) => {
-  console.log(reqBody, " reqBody");
   let is_new = reqBody.new?.toLowerCase?.() === "true";
   let category_name = "";
   categoryJSON.forEach((category) => {
@@ -113,10 +115,10 @@ const setProductItem = (reqBody) => {
       category_name = category.name;
     }
   });
-  let ideal_for = reqBody.ideal_for;
-  if (ideal_for != null || ideal_for != undefined)
-    if (ideal_for.length > 0)
-      ideal_for.forEach((ideal1) => parseInt(ideal_for));
+  // let ideal_for = reqBody.ideal_for;
+  // if (ideal_for != null || ideal_for != undefined)
+  //   if (ideal_for.length > 1)
+  //     ideal_for.forEach((ideal1) => parseInt(ideal_for));
   let item = {
     category_id: reqBody.category_id,
     category_name,
@@ -125,7 +127,6 @@ const setProductItem = (reqBody) => {
     new: is_new,
     img: {
       alt: slugify(reqBody.product_name),
-      src: "assets/images/category/default.jpg",
     },
     price: {
       original: reqBody.original_price,
@@ -139,7 +140,6 @@ const setProductItem = (reqBody) => {
       release_date: reqBody.release_date,
     },
   };
-  console.log(item, " item");
   return item;
 };
 

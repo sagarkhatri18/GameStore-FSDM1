@@ -1,6 +1,7 @@
 window.onload = function () {
   cartCounter();
   fetchLoginData();
+  // getCategories();
 };
 
 cartCounter = () => {
@@ -40,7 +41,7 @@ checkAndSetItemToCart = (item = null) => {
       count: 1,
       id: clickedId,
       data: clickedProduct,
-      stock: clickedStock,
+      stock: --clickedStock,
     });
   } else {
     var productIdArray = [];
@@ -53,6 +54,7 @@ checkAndSetItemToCart = (item = null) => {
       var index = productIdArray.indexOf(clickedId);
       if (cartItems[index].count < clickedStock) {
         cartItems[index].count++;
+        cartItems[index].stock--;
       } else {
         added = false;
       }
@@ -61,33 +63,58 @@ checkAndSetItemToCart = (item = null) => {
         count: 1,
         id: clickedId,
         data: clickedProduct,
-        stock: clickedStock,
+        stock: --clickedStock,
       });
     }
   }
 
-  if (added)
-    $.toast({
-      heading: "Item Adeed",
-      text: "Item get successfully added to the cart",
-      showHideTransition: "slide",
-      icon: "success",
-      position: "top-right",
-      allowToastClose: true,
-    });
-  else
-    $.toast({
-      heading: "Quantity not in stock",
-      text: "Selected quantity is not available",
-      showHideTransition: "slide",
-      position: "top-right",
-      allowToastClose: true,
-      bgColor: "red",
-      textColor: "white",
-    });
+  if (added) console.log("added");
+  // $.toast({
+  //   heading: "Item Adeed",
+  //   text: "Item get successfully added to the cart",
+  //   showHideTransition: "slide",
+  //   icon: "success",
+  //   position: "top-right",
+  //   allowToastClose: true,
+  // });
+  else console.log("not in stock");
+  // $.toast({
+  //   heading: "Quantity not in stock",
+  //   text: "Selected quantity is not available",
+  //   showHideTransition: "slide",
+  //   position: "top-right",
+  //   allowToastClose: true,
+  //   bgColor: "red",
+  //   textColor: "white",
+  // });
 
   localStorage.setItem("cart_items", JSON.stringify(cartItems));
 
+  cartCounter();
+};
+
+reduce_item_in_cart = (item) => {
+  var cartItems = JSON.parse(localStorage.getItem("cart_items"));
+  var clickedId = item.id;
+  var productIdArray = [];
+  cartItems.forEach((element, key) => {
+    var productId = JSON.parse(element.data).id;
+    productIdArray.push(productId);
+  });
+
+  if (productIdArray.includes(clickedId)) {
+    var index = productIdArray.indexOf(clickedId);
+    var { count, stock } = cartItems[index];
+    if (count > 1) {
+      cartItems[index].count--;
+      cartItems[index].stock++;
+    } else {
+      added = false;
+    }
+  } else {
+    console.log("item to remove doesn't exist");
+  }
+  localStorage.setItem("cart_items", JSON.stringify(cartItems));
   cartCounter();
 };
 
@@ -107,6 +134,8 @@ addToCart = (item) => checkAndSetItemToCart(item);
 /* Login features start */
 var credentials = [];
 
+/* Categories */
+
 // fetch login data from the JSON file
 const fetchLoginData = () => {
   $.ajax({
@@ -119,6 +148,21 @@ const fetchLoginData = () => {
       console.log(err);
     },
   });
+  // if (categories.length < 1) {
+  //   debugger;
+  //   $.ajax({
+  //     url: "/api/admin/categories",
+  //     method: "GET",
+  //     success: function (data) {
+  //       debugger;
+  //       categories = data.data;
+  //       localStorage.setItem("categories", categories);
+  //     },
+  //     error: function (err) {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
 };
 
 var checkLoggedIn = localStorage.getItem("loggedIn");
