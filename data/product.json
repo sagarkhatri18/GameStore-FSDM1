@@ -1,154 +1,207 @@
-[
-  {
-    "category_id": "4",
-    "name": "PS4 GTA",
-    "brand": "Rockstar",
-    "new": true,
-    "img": { "alt": "ps4-gta", "src": "assets/images/games/gta5.jpg" },
-    "price": { "original": "42.25", "sale": "33.99" },
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
-    "specification": {
-      "product_code": "",
-      "Genre": "Racing",
-      "release_date": ""
+[{
+        "id": "1",
+        "stock": 5,
+        "category_id": "4",
+        "name": "PS4 GTA",
+        "brand": "Rockstar",
+        "new": true,
+        "img": {
+            "alt": "ps4-gta",
+            "src": "assets/images/games/gta5.jpg"
+        },
+        "price": {
+            "original": "42.25",
+            "sale": "33.99"
+        },
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
+        "specification": {
+            "product_code": "769864 Playd",
+            "genre": "Racing",
+            "release_date": "2022-04-11"
+        },
+        "category_name": "Electronics"
     },
-    "id": "1",
-    "category_name": "Electronics"
-  },
-  {
-    "id": "2",
-    "stock": 2,
-    "category_id": "2",
-    "name": "Far Cry 5 - PC",
-    "brand": "Rockstar",
-    "new": true,
-    "img": { "alt": "Far Cry 5", "src": "assets/images/games/farcry.jpg" },
-    "price": { "original": 45.99, "sale": 35 },
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
-    "specification": {
-      "Product Code": "769864 Playd",
-      "Genre": "Racing",
-      "Release Date": "2022-04-11"
+    {
+        "id": "2",
+        "stock": 5,
+        "category_id": "2",
+        "name": "Far Cry 5 - PC",
+        "brand": "Rockstar",
+        "new": true,
+        "img": {
+            "alt": "Far Cry 5",
+            "src": "assets/images/games/farcry.jpg"
+        },
+        "price": {
+            "original": 45.99,
+            "sale": 35
+        },
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
+        "specification": {
+            "product_code": "769864 Playd",
+            "genre": "Racing",
+            "release_date": "2022-04-11"
+        },
+        "category_name": "PC Games"
     },
-    "category_name": "PC Games"
-  },
-  {
-    "category_id": "1",
-    "name": "Red Dead Redemption 2",
-    "brand": "Rockstar",
-    "new": true,
-    "img": {
-      "alt": "red-dead-redemption-2",
-      "src": "assets/images/games/red_dead.jpg"
+    {
+        "id": "3",
+        "stock": 2,
+        "category_id": "1",
+        "name": "Red Dead Redemption 2",
+        "brand": "Rockstar",
+        "new": true,
+        "img": {
+            "alt": "red-dead-redemption-2",
+            "src": "assets/images/games/red_dead.jpg"
+        },
+        "price": {
+            "original": "30",
+            "sale": "19.99"
+        },
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
+        "specification": {
+            "product_code": "769864 Playd",
+            "genre": "Racing",
+            "release_date": "2022-04-11"
+        },
+        "category_name": "PS4/PS5"
     },
-    "price": { "original": "30", "sale": "19.99" },
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
-    "specification": {
-      "product_code": "769864 Playd",
-      "Genre": "Racing",
-      "release_date": "2022-04-11"
+    {
+        "id": "4",
+        "stock": 2,
+        "category_id": "1",
+        "name": "Watch Dogs Legion PS5",
+        "brand": "Rockstar",
+        "new": true,
+        "img": {
+            "alt": "Watch Dogs Legion PS5",
+            "src": "assets/images/games/watch_dogs.jpg"
+        },
+        "price": {
+            "original": 30,
+            "sale": 27.7
+        },
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
+        "specification": {
+            "product_code": "769864 Playd",
+            "genre": "Racing",
+            "release_date": "2022-04-11"
+        },
+        "category_name": "PS4/PS5"
     },
-    "id": "3",
-    "stock": 2,
-    "category_name": "PS4/PS5"
-  },
-  {
-    "id": "4",
-    "stock": 2,
-    "category_id": "1",
-    "name": "Watch Dogs Legion PS5",
-    "brand": "Rockstar",
-    "new": true,
-    "img": {
-      "alt": "Watch Dogs Legion PS5",
-      "src": "assets/images/games/watch_dogs.jpg"
+    {
+        "id": "5",
+        "stock": 2,
+        "category_id": "3",
+        "name": "BenQ Gaming Monitor",
+        "brand": "BenQ",
+        "new": true,
+        "img": {
+            "alt": "BenQ Gaming Monitor",
+            "src": "assets/images/electronics/2.jpg"
+        },
+        "price": {
+            "original": 649.99,
+            "sale": 499.99
+        },
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
+        "specification": {
+            "product_code": "769864 Playd",
+            "genre": "Racing",
+            "release_date": "2022-04-11"
+        },
+        "category_name": "Gaming PC"
     },
-    "price": { "original": 30, "sale": 27.7 },
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
-    "specification": {
-      "Product Code": "769864 Playd",
-      "Genre": "Racing",
-      "Release Date": "2022-04-11"
+    {
+        "id": "6",
+        "stock": 2,
+        "category_id": "4",
+        "name": "S107 Gaming Combo",
+        "brand": "Logitech",
+        "new": true,
+        "img": {
+            "alt": "S107 Gaming Combo",
+            "src": "assets/images/electronics/3.jpeg"
+        },
+        "price": {
+            "original": 70,
+            "sale": 64
+        },
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
+        "specification": {
+            "product_code": "769864 Playd",
+            "genre": "Racing",
+            "release_date": "2022-04-11"
+        },
+        "category_name": "Electronics"
     },
-    "category_name": "PS4/PS5"
-  },
-  {
-    "id": "5",
-    "stock": 2,
-    "category_id": "3",
-    "name": "BenQ Gaming Monitor",
-    "brand": "BenQ",
-    "new": true,
-    "img": {
-      "alt": "BenQ Gaming Monitor",
-      "src": "assets/images/electronics/2.jpg"
+    {
+        "id": "7",
+        "stock": 5,
+        "category_id": "4",
+        "name": "Razer Gaming Headset",
+        "brand": "Razer",
+        "new": true,
+        "img": {
+            "alt": "Razer Gaming Headset",
+            "src": "assets/images/electronics/1.jpg"
+        },
+        "price": {
+            "original": 89.99,
+            "sale": 80
+        },
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
+        "specification": {
+            "product_code": "769864 Playd",
+            "genre": "Racing",
+            "release_date": "2022-04-11"
+        },
+        "category_name": "Electronics"
     },
-    "price": { "original": 649.99, "sale": 499.99 },
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
-    "specification": {
-      "Product Code": "769864 Playd",
-      "Genre": "Racing",
-      "Release Date": "2022-04-11"
+    {
+        "id": "8",
+        "stock": 5,
+        "category_id": "3",
+        "name": "HAJAAN Gaming P",
+        "brand": "Razer",
+        "new": false,
+        "img": {
+            "alt": "hajaan-gaming-p",
+            "src": "assets/images/electronics/4.jpg"
+        },
+        "price": {
+            "original": "999.99",
+            "sale": "849.9"
+        },
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
+        "specification": {
+            "product_code": "769864 Playd",
+            "genre": "Racing",
+            "release_date": "2022-04-11"
+        },
+        "category_name": "Gaming PC"
     },
-    "category_name": "Gaming PC"
-  },
-  {
-    "id": "6",
-    "stock": 2,
-    "category_id": "4",
-    "name": "S107 Gaming Combo",
-    "brand": "Logitech",
-    "new": true,
-    "img": {
-      "alt": "S107 Gaming Combo",
-      "src": "assets/images/electronics/3.jpeg"
-    },
-    "price": { "original": 70, "sale": 64 },
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
-    "specification": {
-      "Product Code": "769864 Playd",
-      "Genre": "Racing",
-      "Release Date": "2022-04-11"
-    },
-    "category_name": "Electronics"
-  },
-  {
-    "id": "7",
-    "stock": 2,
-    "category_id": "4",
-    "name": "Razer Gaming Headset",
-    "brand": "Razer",
-    "new": true,
-    "img": {
-      "alt": "Razer Gaming Headset",
-      "src": "assets/images/electronics/1.jpg"
-    },
-    "price": { "original": 89.99, "sale": 80 },
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
-    "specification": {
-      "Product Code": "769864 Playd",
-      "Genre": "Racing",
-      "Release Date": "2022-04-11"
-    },
-    "category_name": "Electronics"
-  },
-  {
-    "category_id": "3",
-    "name": "HAJAAN Gaming P",
-    "brand": "Razer",
-    "new": false,
-    "img": {
-      "alt": "hajaan-gaming-p",
-      "src": "assets/images/electronics/4.jpg"
-    },
-    "price": { "original": "999.99", "sale": "849.9" },
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
-    "specification": {
-      "product_code": "769864 Playd",
-      "Genre": "Racing",
-      "release_date": "2022-04-11"
-    },
-    "id": "8",
-    "category_name": "Gaming PC"
-  }
+    {
+        "stock": 608,
+        "category_id": "4",
+        "name": "Nash Clayton",
+        "brand": "Natus quam exercitat",
+        "new": true,
+        "img": {
+            "alt": "nash-clayton",
+            "src": "assets/images/category/default.jpg"
+        },
+        "price": {
+            "original": "532",
+            "sale": "943"
+        },
+        "description": "Corrupti nobis pari",
+        "specification": {
+            "product_code": "Eos perferendis mag",
+            "genre": "Et facere id culpa ",
+            "release_date": "03-Jan-1996"
+        },
+        "id": "9"
+    }
 ]

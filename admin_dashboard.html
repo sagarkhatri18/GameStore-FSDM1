@@ -2,450 +2,449 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <title>Admin Dashboard</title>
-  <link href="assets/css/admin.css" rel="stylesheet" />
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    <link href="assets/css/admin.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
 
-  <!-- jQuery toast plugin -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" />
+    <!-- jQuery toast plugin -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" />
 
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 
-  <script>
-    var checkLoggedIn = localStorage.getItem("adminLoggedIn");
-    if (checkLoggedIn == null || checkLoggedIn === "false") {
-      window.location.href = "/admin_login.html";
-    }
-  </script>
+    <script>
+        var checkLoggedIn = localStorage.getItem("adminLoggedIn");
+        if (checkLoggedIn == null || checkLoggedIn === "false") {
+            window.location.href = "/admin_login.html";
+        }
+    </script>
 </head>
 
 <body>
-  <div class="wrapper">
-    <header>
-      <span>GameStore Admin Panel</span>
-      <span class="header-right-content"><a href="/index.html">Home Page</a></span>
-      <span class="header-right-content" id="logout"><a href="javascript:void(0)">Logout</a></span>
-    </header>
-    <div class="container">
-      <div class="main">
-        <div class="row">
-          <div class="col-6">
-            <h4>Categories Lists</h4>
-          </div>
+    <div class="wrapper">
+        <header>
+            <span>GameStore Admin Panel</span>
+            <span class="header-right-content"><a href="/index.html">Home Page</a></span>
+            <span class="header-right-content" id="logout"><a href="javascript:void(0)">Logout</a></span>
+        </header>
+        <div class="container">
+            <div class="main">
+                <div class="row">
+                    <div class="col-6">
+                        <h4>Categories Lists</h4>
+                    </div>
 
-          <div class="col-6 text-end">
-            <button type="button" id="add_new_category" class="btn btn-sm btn-success">
+                    <div class="col-6 text-end">
+                        <button type="button" id="add_new_category" class="btn btn-sm btn-success">
               Add New
             </button>
-          </div>
-        </div>
+                    </div>
+                </div>
 
-        <table class="categories-lists-table table">
-          <thead>
-            <tr>
-              <th scope="col">S.N</th>
-              <th scope="col">ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Alt Text</th>
-              <th scope="col">Image</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody id="categories-lisis"></tbody>
-        </table>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-6">
-          <h4>Products Lists</h4>
+                <table class="categories-lists-table table">
+                    <thead>
+                        <tr>
+                            <th scope="col">S.N</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Alt Text</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="categories-lisis"></tbody>
+                </table>
+            </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <h4>Products Lists</h4>
+                </div>
 
-        <div class="col-6 text-end">
-          <button type="button" id="add-product" class="btn btn-sm btn-success">
+                <div class="col-6 text-end">
+                    <button type="button" id="add-product" class="btn btn-sm btn-success">
             Add Product
           </button>
-        </div>
-      </div>
-      <table class="products-lists-table table">
-        <thead>
-          <tr>
-            <th scope="col">S.N</th>
-            <th scope="col">ID</th>
-            <th scope="col">Category Name</th>
-            <th scope="col">Name</th>
-            <th scope="col">Brand</th>
-            <th scope="col">Price</th>
-            <th scope="col">Image</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody id="products-lists"></tbody>
-      </table>
-    </div>
-    <footer>
-      <p>&copy; GameStore | All Right Reserved 2023</p>
-    </footer>
-  </div>
-
-  <!-- Add New Category Modal -->
-  <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <form id="add_category_form" method="post">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addCategoryModalLabel">
-              Add New Category
-            </h5>
-            <button type="button" class="mt-0 modal-close-button btn btn-primary" data-bs-dismiss="modal">
-              &times;
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="name">Category Name <span class="text-danger">*</span></label>
-              <input type="text" class="form-control" id="name" required name="name"
-                placeholder="Enter category name" />
-              <span class="text-danger"></span>
+                </div>
             </div>
-            <input type="hidden" class="form-control" id="category_id" name="category_id" value="" />
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              Close
-            </button>
-            <button type="button" id="add_category_submit" class="btn btn-primary">
-              Submit
-            </button>
-          </div>
+            <table class="products-lists-table table">
+                <thead>
+                    <tr>
+                        <th scope="col">S.N</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Category Name</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="products-lists"></tbody>
+            </table>
         </div>
-      </form>
+        <footer>
+            <p>&copy; GameStore | All Right Reserved 2023</p>
+        </footer>
     </div>
-  </div>
 
-  <!-- Add New Product Modal -->
-  <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <form id="add_product_form" method="post">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addProductModalLabel">
-              Add New Product
-            </h5>
-            <button type="button" class="mt-0 modal-close-button btn btn-primary" data-bs-dismiss="modal">
+    <!-- Add New Category Modal -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form id="add_category_form" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addCategoryModalLabel">
+                            Add New Category
+                        </h5>
+                        <button type="button" class="mt-0 modal-close-button btn btn-primary" data-bs-dismiss="modal">
               &times;
             </button>
-          </div>
-          <div class="modal-body" id="product-fields">
-            <input type="hidden" class="form-control" id="product_id" name="product_id" value="" />
-            <!-- <input type="hidden" class="form-control" id="img_src" name="img_src" value="" /> -->
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">Category Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="name" required name="name" placeholder="Enter category name" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <input type="hidden" class="form-control" id="category_id" name="category_id" value="" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
               Close
             </button>
-            <button type="button" id="add_product_submit" class="btn btn-primary">
+                        <button type="button" id="add_category_submit" class="btn btn-primary">
               Submit
             </button>
-          </div>
+                    </div>
+                </div>
+            </form>
         </div>
-      </form>
     </div>
-  </div>
 
-  <script>
-    let categories = [];
-    $(document).ready(function () {
-      // api call to load categories data
-      $.ajax({
-        url: "/api/admin/categories",
-        method: "GET",
-        success: function (data) {
-          categories = data.data;
-          displayCategoryData(categories);
-          display_product_modal();
-        },
-        error: function (err) {
-          console.log(err);
-        },
-      });
+    <!-- Add New Product Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <form id="add_product_form" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addProductModalLabel">
+                            Add New Product
+                        </h5>
+                        <button type="button" class="mt-0 modal-close-button btn btn-primary" data-bs-dismiss="modal">
+                          &times;
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" id="product-fields">
 
-      // api call to load products data
-      $.ajax({
-        url: "/api/admin/products",
-        method: "GET",
-        success: function (data) {
-          displayProductData(data.data);
-        },
-        error: function (err) {
-          console.log(err);
-        },
-      });
+                        </div>
+                        <input type="hidden" class="form-control" id="product_id" name="product_id" value="" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                          Close
+                        </button>
+                        <button type="button" id="add_product_submit" class="btn btn-primary">
+                          Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-      $(`#logout`).on("click", function (e) {
-        localStorage.setItem("adminLoggedIn", false);
-        window.location.reload();
-      });
+    <script>
+        let categories = [];
+        $(document).ready(function() {
+            // api call to load categories data
+            $.ajax({
+                url: "/api/admin/categories",
+                method: "GET",
+                success: function(data) {
+                    categories = data.data;
+                    displayCategoryData(categories);
+                    display_product_modal();
+                },
+                error: function(err) {
+                    console.log(err);
+                },
+            });
 
-      $(`#add_new_category`).on("click", function (e) {
-        e.preventDefault();
-        $(`#name`).val("");
-        $(`#category_id`).val("");
-        $(`#addCategoryModal`).modal("show");
-      });
+            // api call to load products data
+            $.ajax({
+                url: "/api/admin/products",
+                method: "GET",
+                success: function(data) {
+                    displayProductData(data.data);
+                },
+                error: function(err) {
+                    console.log(err);
+                },
+            });
 
-      $(`#add_category_submit`).on("click", (e) => {
-        e.preventDefault();
-        if ($(`#name`).val().trim() == "") {
-          $.toast({
-            heading: "Failed",
-            text: "Category name is required",
-            showHideTransition: "slide",
-            icon: "error",
-            position: "top-right",
-            allowToastClose: true,
-          });
-          return false;
-        }
+            $(`#logout`).on("click", function(e) {
+                localStorage.setItem("adminLoggedIn", false);
+                window.location.reload();
+            });
 
-        let formData = $(`#add_category_form`).serializeArray();
-        addUpdateCategory(formData);
-      });
+            $(`#add_new_category`).on("click", function(e) {
+                e.preventDefault();
+                $(`#name`).val("");
+                $(`#category_id`).val("");
+                $(`#addCategoryModal`).modal("show");
+            });
 
-      $(`#add-product`).on("click", function (e) {
-        e.preventDefault();
-        $(`#product_id`).val("");
-        $(`#img_src`).val("");
-        $(`#product_name`).val("");
-        $(`#brand`).val("");
-        $(`#original_price`).val("");
-        $(`#sale_price`).val("");
-        $(`#description`).val("");
-        $(`#product_code`).val("");
-        $(`#release_date`).val("");
-        $(`#genre`).val("");
-        $(`#addProductModal`).modal("show");
-      });
+            // handle the category submit on click event
+            $(`#add_category_submit`).on("click", (e) => {
+                e.preventDefault();
+                if ($(`#name`).val().trim() == "") {
+                    $.toast({
+                        heading: "Failed",
+                        text: "Category name is required",
+                        showHideTransition: "slide",
+                        icon: "error",
+                        position: "top-right",
+                        allowToastClose: true,
+                    });
+                    return false;
+                }
 
-      $(`#add_product_submit`).on("click", (e) => {
-        e.preventDefault();
-        $(`#img_src`).val("s");
-        $(`#product_name`).val("s");
-        $(`#brand`).val("s");
-        $(`#original_price`).val("s");
-        $(`#sale_price`).val("s");
-        $(`#description`).val("s");
-        $(`#product_code`).val("s");
-        $(`#release_date`).val("s");
-        $(`#genre`).val("s");
+                let formData = $(`#add_category_form`).serializeArray();
+                addUpdateCategory(formData);
+            });
 
-        var isEmpty = false;
-        var values = $('#product_name, #brand, #original_price, #sale_price, #description, #product_code, #release_date, #genre, #category_select')
-          .map(function () {
-            if ($(this).val().trim() == "") {
-              isEmpty = true;
-            }
-            return $(this).val();
-          })
-          .get();
-        debugger;
-        if (isEmpty) {
-          $.toast({
-            heading: "Failed",
-            text: "Required fields are missing",
-            showHideTransition: "slide",
-            icon: "error",
-            position: "top-right",
-            allowToastClose: true,
-          });
-          return false;
-        }
+            // handle the submit button from product add modal
+            $(`#add-product`).on("click", function(e) {
+                e.preventDefault();
+                $(`#category_id`).val("");
+                $(`#product_id`).val("");
+                $(`#product_name`).val("");
+                $(`#brand`).val("");
+                $(`#original_price`).val("");
+                $(`#sale_price`).val("");
+                $(`#description`).val("");
+                $(`#product_code`).val("");
+                $(`#release_date`).val("");
+                $(`#genre`).val("");
+                $(`#stock`).val("");
+                $(`#addProductModal`).modal("show");
+            });
 
-        let formData = $(`#add_product_form`).serializeArray();
-        addProduct(formData);
-      });
-    });
 
-    const display_product_modal = () => {
-      let product_array = [
-        { field: "product_name", placeholder: "Product Name" },
-        { field: "brand", placeholder: "Brand" },
-        { field: "original_price", placeholder: "Original Price" },
-        { field: "sale_price", placeholder: "Sale Price" },
-        { field: "description", placeholder: "Description" },
-        { field: "product_code", placeholder: "Product Code" },
-        { field: "genre", placeholder: "Genre" },
-        { field: "release_date", placeholder: "Release Date" },
-        { field: "stock", placeholder: "Quantity in Stock" },
-      ];
-      let append_data = "";
-      append_data += select_menu();
-      // append_data += checked_group();
-      append_data += radio_group();
-      product_array.forEach((product) => {
-        append_data += `
-          <div class="form-group">
-            <label for="${product.field}">${product.placeholder}
-              <span class="text-danger">*</span>
-            </label>
-              <input
-              type="text"
-              class="form-control"
-              id="${product.field}"
-              required
-              name="${product.field}"
-              placeholder="Enter ${product.placeholder}"
-              />
-              <span class="text-danger"></span>
-          </div>`;
-      });
-      $("#product-fields").append(append_data);
-    };
+            $(`#add_product_submit`).on("click", (e) => {
+                e.preventDefault();
+                // $(`#img_src`).val("s");
+                // $(`#product_name`).val("s");
+                // $(`#brand`).val("s");
+                // $(`#original_price`).val("s");
+                // $(`#sale_price`).val("s");
+                // $(`#description`).val("s");
+                // $(`#product_code`).val("s");
+                // $(`#release_date`).val("s");
+                // $(`#genre`).val("s");
+                // $(`#stock`).val("4");
 
-    const select_menu = () => {
-      let append_data = `
-        <div class="form-group">
-          <select id="category_select" class="form-select" name="category_id" aria-label="Default select example">
-            <option selected value="">Select the category</option>
-        `;
-      categories.forEach((category) => {
-        append_data += `
+                var isEmpty = false;
+                var values = $('#product_name, #brand, #original_price, #sale_price, #description, #product_code, #release_date, #genre, #category_select, #stock')
+                    .map(function() {
+                        if ($(this).val().trim() == "") {
+                            isEmpty = true;
+                        }
+                        return $(this).val();
+                    })
+                    .get();
+                if (isEmpty) {
+                    $.toast({
+                        heading: "Failed",
+                        text: "Required fields are missing",
+                        showHideTransition: "slide",
+                        icon: "error",
+                        position: "top-right",
+                        allowToastClose: true,
+                    });
+                    return false;
+                }
+
+                let formData = $(`#add_product_form`).serializeArray();
+                addProduct(formData);
+            });
+        });
+
+        const display_product_modal = () => {
+            let product_array = [{
+                field: "product_name",
+                placeholder: "Product Name"
+            }, {
+                field: "brand",
+                placeholder: "Brand"
+            }, {
+                field: "original_price",
+                placeholder: "Original Price"
+            }, {
+                field: "sale_price",
+                placeholder: "Sale Price"
+            }, {
+                field: "description",
+                placeholder: "Description"
+            }, {
+                field: "product_code",
+                placeholder: "Product Code"
+            }, {
+                field: "genre",
+                placeholder: "Genre"
+            }, {
+                field: "release_date",
+                placeholder: "Release Date"
+            }, {
+                field: "stock",
+                placeholder: "Quantity in Stock"
+            }, ];
+            let append_data = "";
+            append_data += select_menu();
+            // append_data += checked_group();
+            append_data += radio_group();
+            product_array.forEach((product) => {
+                append_data += `
+                <div class=col-md-6>
+                <div class="form-group">
+                    <label for="${product.field}">${product.placeholder}
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    id="${product.field}"
+                    required
+                    name="${product.field}"
+                    placeholder="Enter ${product.placeholder}"
+                    />
+                    <span class="text-danger"></span>
+                </div></div>`;
+            });
+            $("#product-fields").append(append_data);
+        };
+
+        const select_menu = () => {
+            let append_data = `
+            <div class=col-md-6>
+              <div class="form-group">
+              <label class="form-label" for="category_id">Category <span class="text-danger">*</span></label>
+                <select id="category_select" class="form-select" name="category_id" aria-label="Default select example">
+                <option selected value="">Select the category</option>
+            `;
+            categories.forEach((category) => {
+                append_data += `
             <option value="${category.id}">${category.name}</option>
             `;
-      });
-      append_data += `
+            });
+            append_data += `
           </select>
-        </div>
+          </div></div>
         `;
-      return append_data;
-    };
+            return append_data;
+        };
 
-    /* const checked_group = () => {
-      let data = `
-      <div id="check-group" class="form-group">
-          <h4>Ideal for
-            <span class="text-danger">*</span>
-          </h4>
-          <br/>
-          `;
-      categories.forEach((category) => {
-        let id = category.id + "category";
-        data += `
-        <div class="form-check ">
-          <input class="form-check-input" type="checkbox" name="ideal_for" value="${category.id}" id="${id}">
-          <label class="form-check-label" for="${id}">
-            ${category.name}
-            </label>
-        </div>`;
-      });
-      data += "</div>";
-      return data;
-    }; */
+        const radio_group = () => {
+            let name = "new";
+            let yes = "Yes";
+            let no = "No";
+            let data = `
+            <div class="col-md-6">
+            <div id="radio-group" class="form-group">
+              <p>New item?</p>
+              <div class="form-check ">
+                <input class="form-check-input" type="radio" name="${name}" value="true" checked id="${yes}">
+                  <label class="form-check-label" for="${yes}">
+                    ${yes}
+                  </label>
+              </div>
+              <div class="form-check ">
+                <input class="form-check-input" type="radio" name="${name}" value="false" id="${no}">
+                  <label class="form-check-label" for="${no}">
+                    ${no}
+                  </label>
+              </div>
+            </div></div>`;
+            return data;
+        };
 
-    const radio_group = () => {
-      let name = "new";
-      let yes = "Yes";
-      let no = "No";
-      let data = `
-        <div id="radio-group" class="form-group">
-          <h4>Is it the new item?
-            <span class="text-danger">*</span>
-          </h4>
-          <div class="form-check ">
-            <input class="form-check-input" type="radio" name="${name}" value="true" checked id="${yes}">
-              <label class="form-check-label" for="${yes}">
-                ${yes}
-              </label>
-          </div>
-          <div class="form-check ">
-            <input class="form-check-input" type="radio" name="${name}" value="false" id="${no}">
-              <label class="form-check-label" for="${no}">
-                ${no}
-              </label>
-          </div>
-        </div>
-        `;
-      return data;
-    };
+        function addProduct(formData) {
+            $.ajax({
+                url: "/api/admin/add-product",
+                data: formData,
+                method: "POST",
+                success: function(data) {
+                    window.location.reload();
+                },
+                error: function(err) {
+                    console.log(err.responseJSON.data);
+                    $.toast({
+                        heading: "Failed",
+                        text: err.responseJSON.message,
+                        showHideTransition: "slide",
+                        icon: "error",
+                        position: "top-right",
+                        allowToastClose: true,
+                    });
+                },
+            });
+        }
 
-    function addProduct(formData) {
-      $.ajax({
-        url: "/api/admin/add-product",
-        data: formData,
-        method: "POST",
-        success: function (data) {
-          window.location.reload();
-        },
-        error: function (err) {
-          console.log(err.responseJSON.data);
-          $.toast({
-            heading: "Failed",
-            text: err.responseJSON.message,
-            showHideTransition: "slide",
-            icon: "error",
-            position: "top-right",
-            allowToastClose: true,
-          });
-        },
-      });
-    }
+        // delete the selected product
+        function deleteProduct(product_id) {
+            $.ajax({
+                url: `/api/admin/product/${product_id}`,
+                method: "DELETE",
+                success: function(data) {
+                    window.location.reload();
+                },
+                error: function(err) {
+                    console.log(err.responseJSON.data);
+                    $.toast({
+                        heading: "Failed",
+                        text: err.responseJSON.message,
+                        showHideTransition: "slide",
+                        icon: "error",
+                        position: "top-right",
+                        allowToastClose: true,
+                    });
+                },
+            });
+        }
 
-    // delete the selected product
-    function deleteProduct(product_id) {
-      $.ajax({
-        url: `/api/admin/product/${product_id}`,
-        method: "DELETE",
-        success: function (data) {
-          window.location.reload();
-        },
-        error: function (err) {
-          console.log(err.responseJSON.data);
-          $.toast({
-            heading: "Failed",
-            text: err.responseJSON.message,
-            showHideTransition: "slide",
-            icon: "error",
-            position: "top-right",
-            allowToastClose: true,
-          });
-        },
-      });
-    }
+        // handle the insert or udpate of the category
+        function addUpdateCategory(formData) {
+            $.ajax({
+                url: "/api/admin/add-category",
+                data: formData,
+                method: "POST",
+                success: function(data) {
+                    window.location.reload();
+                },
+                error: function(err) {
+                    $.toast({
+                        heading: "Failed",
+                        text: err.responseJSON.message,
+                        showHideTransition: "slide",
+                        icon: "error",
+                        position: "top-right",
+                        allowToastClose: true,
+                    });
+                },
+            });
+        }
 
-    // handle the insert or udpate of the category
-    function addUpdateCategory(formData) {
-      $.ajax({
-        url: "/api/admin/add-category",
-        data: formData,
-        method: "POST",
-        success: function (data) {
-          window.location.reload();
-        },
-        error: function (err) {
-          $.toast({
-            heading: "Failed",
-            text: err.responseJSON.message,
-            showHideTransition: "slide",
-            icon: "error",
-            position: "top-right",
-            allowToastClose: true,
-          });
-        },
-      });
-    }
-
-    function displayCategoryData(data) {
-      var appendData = "";
-      data.forEach((item, index) => {
-        appendData += `
+        function displayCategoryData(data) {
+            var appendData = "";
+            data.forEach((item, index) => {
+                appendData += `
               <tr>
                   <th scope="row">${index + 1}</th>
                   <td>${item.id}</td>
@@ -462,15 +461,15 @@
                   </td>
               </tr>
               `;
-      });
-      $(`#categories-lisis`).html(appendData);
-    }
+            });
+            $(`#categories-lisis`).html(appendData);
+        }
 
-    function displayProductData(data) {
-      appendData = "";
-      data.forEach((item, index) => {
-        let id = item.id;
-        appendData += `
+        function displayProductData(data) {
+            appendData = "";
+            data.forEach((item, index) => {
+                let id = item.id;
+                appendData += `
               <tr>
                   <th scope="row">${index + 1}</th>
                   <td>${id}</td>
@@ -487,83 +486,73 @@
                   </td>
               </tr>
               `;
-      });
-      $(`#products-lists`).html(appendData);
-    }
+            });
+            $(`#products-lists`).html(appendData);
+        }
 
-    // delete the selected category
-    function deleteCategory(category_id) {
-      $.ajax({
-        url: `/api/admin//category/${category_id}`,
-        method: "DELETE",
-        success: function (data) {
-          window.location.reload();
-        },
-        error: function (err) {
-          $.toast({
-            heading: "Failed",
-            text: err.responseJSON.message,
-            showHideTransition: "slide",
-            icon: "error",
-            position: "top-right",
-            allowToastClose: true,
-          });
-        },
-      });
-    }
+        // delete the selected category
+        function deleteCategory(category_id) {
+            $.ajax({
+                url: `/api/admin//category/${category_id}`,
+                method: "DELETE",
+                success: function(data) {
+                    window.location.reload();
+                },
+                error: function(err) {
+                    $.toast({
+                        heading: "Failed",
+                        text: err.responseJSON.message,
+                        showHideTransition: "slide",
+                        icon: "error",
+                        position: "top-right",
+                        allowToastClose: true,
+                    });
+                },
+            });
+        }
 
-    const updateProduct = (id) => {
-      $.ajax({
-        url: `api/admin/product/${id}`,
-        dataType: "json",
-        success: function (data) {
-          fill_product_modal(data.data);
-        },
-        error: function (err) {
-          console.log(err);
-        },
-      });
-    };
+        const updateProduct = (id) => {
+            $.ajax({
+                url: `api/admin/product/${id}`,
+                dataType: "json",
+                success: function(data) {
+                    fill_product_modal(data.data);
+                },
+                error: function(err) {
+                    console.log(err);
+                },
+            });
+        };
 
-    const fill_product_modal = (product) => {
-      let product_specification = product.specification;
-      debugger;
-      $(`#product_id`).val(product.id);
-      $(`#stock`).val(product.stock);
-      $(`#img_src`).val(product.img.src);
-      $(`#product_name`).val(product.name);
-      $(`#brand`).val(product.brand);
-      $(`#original_price`).val(product.price.original);
-      $(`#sale_price`).val(product.price.sale);
-      $(`#description`).val(product.description);
-      $(`#product_code`).val(product_specification["Product Code"]);
-      $(`#release_date`).val(product_specification["Release Date"]);
-      $(`#genre`).val(product_specification.Genre);
-      if (product.new) $(`#Yes`).prop("checked", true);
-      else $(`#No`).prop("checked", true);
-      $("#category_select").val(product.category_id);
-      // let checkgp = $("#check-group").val();
-      // if ($("#check-group").val() == "checkd")
-      //   categories.forEach((category) => {
-      //     $(`#${category.id}category`).attr("checked", false);
-      //   });
-      // let ideal_for = product_specification.ideal_for;
-      // if (ideal_for?.length > 0)
-      //   ideal_for.forEach((ideal) => {
-      //     $(`#${ideal}category`).attr("checked", true);
-      //     $("#check-group").val("checkd");
-      //   });
+        const fill_product_modal = (product) => {
+            let product_specification = product.specification;
+            $(`#product_id`).val(product.id);
+            $(`#stock`).val(product.stock);
+            $(`#img_src`).val(product.img.src);
+            $(`#product_name`).val(product.name);
+            $(`#brand`).val(product.brand);
+            $(`#original_price`).val(product.price.original);
+            $(`#sale_price`).val(product.price.sale);
+            $(`#description`).val(product.description);
+            $(`#product_code`).val(product_specification.product_code);
+            $(`#release_date`).val(product_specification.release_date);
+            $(`#genre`).val(product_specification.genre);
+            if (product.new)
+                $(`#Yes`).prop("checked", true);
+            else
+                $(`#No`).prop("checked", true);
+            $("#category_select").val(product.category_id);
 
-      $(`#addProductModal`).modal("show");
-    };
+            $(`#addProductModal`).modal("show");
+        };
 
-    // update the selected category
-    function updateCategory(category_id, name) {
-      $(`#name`).val(name);
-      $(`#category_id`).val(category_id);
-      $(`#addCategoryModal`).modal("show");
-    }
-  </script>
+        // update the selected category
+        function updateCategory(category_id, name) {
+            $(`#name`).val(name);
+            $(`#category_id`).val(category_id);
+            $(`#addCategoryModal`).modal("show");
+        }
+    </script>
 </body>
 
 </html>
