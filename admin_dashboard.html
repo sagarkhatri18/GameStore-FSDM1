@@ -146,7 +146,7 @@
           </div>
           <div class="modal-body" id="product-fields">
             <input type="hidden" class="form-control" id="product_id" name="product_id" value="" />
-            <input type="hidden" class="form-control" id="img_src" name="img_src" value="" />
+            <!-- <input type="hidden" class="form-control" id="img_src" name="img_src" value="" /> -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -222,18 +222,45 @@
 
       $(`#add-product`).on("click", function (e) {
         e.preventDefault();
-        $(`#name`).val("");
         $(`#product_id`).val("");
+        $(`#img_src`).val("");
+        $(`#product_name`).val("");
+        $(`#brand`).val("");
+        $(`#original_price`).val("");
+        $(`#sale_price`).val("");
+        $(`#description`).val("");
+        $(`#product_code`).val("");
+        $(`#release_date`).val("");
+        $(`#genre`).val("");
         $(`#addProductModal`).modal("show");
       });
 
       $(`#add_product_submit`).on("click", (e) => {
         e.preventDefault();
+        $(`#img_src`).val("s");
+        $(`#product_name`).val("s");
+        $(`#brand`).val("s");
+        $(`#original_price`).val("s");
+        $(`#sale_price`).val("s");
+        $(`#description`).val("s");
+        $(`#product_code`).val("s");
+        $(`#release_date`).val("s");
+        $(`#genre`).val("s");
 
-        if ($(`#product_name`).val().trim() == "") {
+        var isEmpty = false;
+        var values = $('#product_name, #brand, #original_price, #sale_price, #description, #product_code, #release_date, #genre, #category_select')
+          .map(function () {
+            if ($(this).val().trim() == "") {
+              isEmpty = true;
+            }
+            return $(this).val();
+          })
+          .get();
+        debugger;
+        if (isEmpty) {
           $.toast({
             heading: "Failed",
-            text: "Product name is required",
+            text: "Required fields are missing",
             showHideTransition: "slide",
             icon: "error",
             position: "top-right",
@@ -257,6 +284,7 @@
         { field: "product_code", placeholder: "Product Code" },
         { field: "genre", placeholder: "Genre" },
         { field: "release_date", placeholder: "Release Date" },
+        { field: "stock", placeholder: "Quantity in Stock" },
       ];
       let append_data = "";
       append_data += select_menu();
@@ -286,7 +314,7 @@
       let append_data = `
         <div class="form-group">
           <select id="category_select" class="form-select" name="category_id" aria-label="Default select example">
-            <option selected>Select the category</option>
+            <option selected value="">Select the category</option>
         `;
       categories.forEach((category) => {
         append_data += `
@@ -332,7 +360,7 @@
             <span class="text-danger">*</span>
           </h4>
           <div class="form-check ">
-            <input class="form-check-input" type="radio" name="${name}" value="true" id="${yes}">
+            <input class="form-check-input" type="radio" name="${name}" value="true" checked id="${yes}">
               <label class="form-check-label" for="${yes}">
                 ${yes}
               </label>
@@ -499,7 +527,9 @@
 
     const fill_product_modal = (product) => {
       let product_specification = product.specification;
+      debugger;
       $(`#product_id`).val(product.id);
+      $(`#stock`).val(product.stock);
       $(`#img_src`).val(product.img.src);
       $(`#product_name`).val(product.name);
       $(`#brand`).val(product.brand);

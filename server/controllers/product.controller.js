@@ -12,15 +12,15 @@ let categoryJSON = JSON.parse(fs.readFileSync(categoryJSONPath));
 
 // fetch all the products from the JSON file
 exports.products = (req, res) => {
-  let returnData = [];
+  let returnData = []; 
   productsJSON.forEach((item) => {
     categoryJSON.forEach((category) => {
       if (category.id == item.category_id) {
         item["category_name"] = category.name;
         returnData.push(item);
-      }
+      } 
     });
-  });
+  }); 
   return res
     .status(200)
     .json({ success: true, message: "success", data: returnData });
@@ -56,19 +56,21 @@ exports.addProduct = (req, res) => {
     if (id == "" || id == undefined || id == null) {
       var newId = 0;
       productsJSON.forEach((item) => {
-        newId = parseInt(item.id);
-      });
+        newId = parseInt(item.id); 
+      }); 
 
-      newId++;
-
+      newId++;    
+ 
       let item = setProductItem(reqBody);
       item.id = newId.toString();  
       item.img.src = "assets/images/category/default.jpg";
-
-      productsJSON.push(item);
-      fs.writeFileSync(productJSONPath, JSON.stringify(productsJSON));
+ 
+      productsJSON.push(item); 
+       
+      let return_json = JSON.stringify(productsJSON);
+      fs.writeFileSync(productJSONPath, return_json);
     }
-    // update the existing record
+    // update the existing record 
     else {
       let returnData = [];
       productsJSON.forEach((item) => {
@@ -77,21 +79,21 @@ exports.addProduct = (req, res) => {
           item.id = id;
           item.img.src = src;
         }
-        returnData.push(item);
-      });
-
-      fs.writeFileSync(productJSONPath, JSON.stringify(returnData));
+        returnData.push(item);  
+      });  
+      let return_json = JSON.stringify(returnData);
+      fs.writeFileSync(productJSONPath, return_json);
     }
-
+ 
     return res.status(200).json({ success: true, message: "success" });
   } catch (err) {
-    return res.status(400).json({
+    return res.status(400).json({ 
       success: true,
       message: "Failed to add the product",
       data: req.body,
     });
   }
-};
+}; 
 
 // delete the selected category from JSON file
 exports.deleteProduct = (req, res) => {
@@ -109,19 +111,12 @@ exports.deleteProduct = (req, res) => {
 // Make product object
 const setProductItem = (reqBody) => {
   let is_new = reqBody.new?.toLowerCase?.() === "true";
-  let category_name = "";
-  categoryJSON.forEach((category) => {
-    if (category.id == reqBody.category_id) {
-      category_name = category.name;
-    }
-  });
   // let ideal_for = reqBody.ideal_for;
   // if (ideal_for != null || ideal_for != undefined)
   //   if (ideal_for.length > 1)
   //     ideal_for.forEach((ideal1) => parseInt(ideal_for));
   let item = {
     category_id: reqBody.category_id,
-    category_name,
     name: reqBody.product_name,
     brand: reqBody.brand,
     new: is_new,
@@ -135,7 +130,7 @@ const setProductItem = (reqBody) => {
     description: reqBody.description,
     specification: {
       product_code: reqBody.product_code,
-      ideal_for: reqBody.ideal_for,
+      // ideal_for: reqBody.ideal_for,
       Genre: reqBody.genre,
       release_date: reqBody.release_date,
     },

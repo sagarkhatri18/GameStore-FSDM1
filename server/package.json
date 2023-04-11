@@ -13,11 +13,5 @@
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.22"
-  },
-  "nodemonConfig": {
-    "watch": [
-      "../data"
-    ],
-    "ext": "js,json"
   }
 }

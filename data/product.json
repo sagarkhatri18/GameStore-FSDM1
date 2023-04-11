@@ -1,20 +1,19 @@
 [
   {
     "category_id": "4",
-    "stock":3,
-    "category_name": "Electronics",
-    "name": "PS4 GTA5",
+    "name": "PS4 GTA",
     "brand": "Rockstar",
     "new": true,
-    "img": { "alt": "ps4-gta5", "src": "assets/images/games/gta5.jpg" },
+    "img": { "alt": "ps4-gta", "src": "assets/images/games/gta5.jpg" },
     "price": { "original": "42.25", "sale": "33.99" },
     "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.",
     "specification": {
-      "product_code": "769864 Playd",
+      "product_code": "",
       "Genre": "Racing",
-      "release_date": "2022-04-11"
+      "release_date": ""
     },
-    "id": "1"
+    "id": "1",
+    "category_name": "Electronics"
   },
   {
     "id": "2",
@@ -35,7 +34,6 @@
   },
   {
     "category_id": "1",
-    "category_name": "PS4/PS5",
     "name": "Red Dead Redemption 2",
     "brand": "Rockstar",
     "new": true,
@@ -51,7 +49,8 @@
       "release_date": "2022-04-11"
     },
     "id": "3",
-    "stock": 2
+    "stock": 2,
+    "category_name": "PS4/PS5"
   },
   {
     "id": "4",
@@ -135,7 +134,6 @@
   },
   {
     "category_id": "3",
-    "category_name": "Gaming PC",
     "name": "HAJAAN Gaming P",
     "brand": "Razer",
     "new": false,
@@ -150,6 +148,7 @@
       "Genre": "Racing",
       "release_date": "2022-04-11"
     },
-    "id": "8"
+    "id": "8",
+    "category_name": "Gaming PC"
   }
 ]
