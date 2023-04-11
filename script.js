@@ -20,8 +20,6 @@ cartCounter = () => {
   }
 };
 
-roundUpTwo = (number) => Math.round(number * 100) / 100;
-
 checkAndSetItemToCart = (item = null) => {
   // debugger
   var cartItems = JSON.parse(localStorage.getItem("cart_items"));
@@ -67,7 +65,7 @@ checkAndSetItemToCart = (item = null) => {
     }
   }
 
-  if (added)
+  if (added) {
     $.toast({
       heading: "Item Added",
       text: "Item get successfully added to the cart",
@@ -76,7 +74,9 @@ checkAndSetItemToCart = (item = null) => {
       position: "bottom-right",
       allowToastClose: true,
     });
-  else
+    localStorage.setItem("cart_items", JSON.stringify(cartItems));
+    cartCounter();
+  } else
     $.toast({
       heading: "Quantity not in stock",
       text: "Selected quantity is not available",
@@ -86,16 +86,14 @@ checkAndSetItemToCart = (item = null) => {
       bgColor: "red",
       textColor: "white",
     });
-
-  localStorage.setItem("cart_items", JSON.stringify(cartItems));
-
-  cartCounter();
 };
 
 reduce_item_in_cart = (item) => {
   var cartItems = JSON.parse(localStorage.getItem("cart_items"));
   var clickedId = item.id;
   var productIdArray = [];
+  var added = true;
+
   cartItems.forEach((element, key) => {
     var productId = JSON.parse(element.data).id;
     productIdArray.push(productId);
@@ -109,6 +107,7 @@ reduce_item_in_cart = (item) => {
       cartItems[index].stock++;
     } else {
       added = false;
+      console.log("Not able to reduce the cart item");
     }
   } else {
     console.log("item to remove doesn't exist");
@@ -116,16 +115,6 @@ reduce_item_in_cart = (item) => {
   localStorage.setItem("cart_items", JSON.stringify(cartItems));
   cartCounter();
 };
-
-// convert the string to slug
-function slugify(str) {
-  return str
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/[\s_-]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
 
 // get executed when "Add To Cart" button from the product was clicked
 addToCart = (item) => checkAndSetItemToCart(item);
@@ -147,21 +136,6 @@ const fetchLoginData = () => {
       console.log(err);
     },
   });
-  // if (categories.length < 1) {
-  //   debugger;
-  //   $.ajax({
-  //     url: "/api/admin/categories",
-  //     method: "GET",
-  //     success: function (data) {
-  //       debugger;
-  //       categories = data.data;
-  //       localStorage.setItem("categories", categories);
-  //     },
-  //     error: function (err) {
-  //       console.log(err);
-  //     },
-  //   });
-  // }
 };
 
 var checkLoggedIn = localStorage.getItem("loggedIn");
@@ -209,3 +183,14 @@ function logout() {
   localStorage.setItem("loggedIn", false);
   window.location.reload();
 }
+// convert the string to slug
+function slugify(str) {
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+roundUpTwo = (number) => Math.round(number * 100) / 100;
