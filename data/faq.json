@@ -1,46 +1,43 @@
 {
-  "Section": [
-    {
-      "id": 1,
-      "title": "Product",
-      "accordions": [
-        {
-          "id": 1,
-          "title": "Accordion Item #1",
-          "description": "<strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow."
+    "Section": [{
+            "id": 1,
+            "title": "Ordering and Payment",
+            "accordions": [{
+                    "id": 1,
+                    "title": "How do I place an order?",
+                    "description": "<ul><li>Browse the products on our website and select the item(s) you wish to purchase.</li><li>Click on the <strong>Add to Cart </strong> button next to the item(s) you want to buy. You can add as many items as you like to your cart.</li><li>Once you have added all the items you want to purchase to your cart, click on the <strong>Checkout</strong> button.</li></ul>"
+                },
+                {
+                    "id": 2,
+                    "title": "Can I cancel my order once it's been placed?",
+                    "description": "<p>Yes, you may be able to cancel your order if it has not yet been shipped. To cancel your order, please follow these steps:</p> <ol> <li>Log in to your account on our website.</li> <li>Go to your order history and find the order you want to cancel.</li> <li>Click on the Cancel Order button next to the order.</li> <li>If the order is eligible for cancellation, you will see a confirmation message. Follow the instructions to complete the cancellation.</li> <li>If the order is not eligible for cancellation, please contact our customer service team for assistance.</li> </ol>"
+                },
+                {
+                    "id": 3,
+                    "title": "Do you offer any discounts or promotions?",
+                    "description": "<p>Yes, we do offer discounts and promotions from time to time. To stay up to date on our latest deals and offers, please subscribe to our newsletter or follow us on social media.</p> <p>You can also check our website for any ongoing promotions or discounts. These may include:</p> <ul> <li>Percentage off discounts on specific products or categories</li> <li>Free shipping promotions</li> <li>Buy one, get one free offers</li> <li>Discount codes for use at checkout</li> </ul>"
+                }
+            ]
         },
         {
-          "id": 2,
-          "title": "Accordion Item #2",
-          "description": "This is the second item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the .accordion-body, though the transition does limit overflow."
-        },
-        {
-          "id": 3,
-          "title": "Accordion Item #3",
-          "description": "This is the third item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the .accordion-body, though the transition does limit overflow."
+            "id": 2,
+            "title": "Contact Us",
+            "accordions": [{
+                    "id": 1,
+                    "title": "How can I get in touch with your customer service team?",
+                    "description": "<p>If you have any questions, concerns, or feedback, our customer service team is here to help. You can contact us in the following ways:</p> <ul> <li>By phone: Call our toll-free number at 1-800-555-5555 during our business hours (Monday to Friday, 9am to 5pm EST)</li> <li>By email: Send us an email at <a href='mailto:customerservice@gamestore.com'>customerservice@gamestore.com</a> and we'll get back to you as soon as possible</li> </ul>"
+                },
+                {
+                    "id": 2,
+                    "title": "Do you have a physical store location?",
+                    "description": "<p>Yes, we do have physical locations in different city across Ontario. Details can be found at home page."
+                },
+                {
+                    "id": 3,
+                    "title": "What are your customer service hours?",
+                    "description": "<p> Our business hours: (Monday to Friday, 9am to 5pm EST)</p>"
+                }
+            ]
         }
-      ]
-    },
-    {
-      "id": 2,
-      "title": "Payment",
-      "accordions": [
-        {
-          "id": 1,
-          "title": "Accordion Item #1",
-          "description": "This is the first item's accordion body. It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the.accordion-body</code>,though the transition does limit overflow."
-        },
-        {
-          "id": 2,
-          "title": "Accordion Item #2",
-          "description": "This is the second item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the .accordion-body, though the transition does limit overflow."
-        },
-        {
-          "id": 3,
-          "title": "Accordion Item #3",
-          "description": "This is the third item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the .accordion-body, though the transition does limit overflow."
-        }
-      ]
-    }
-  ]
+    ]
 }
