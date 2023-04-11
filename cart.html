@@ -24,13 +24,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- importing required fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,200;1,300&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,200;1,300&display=swap" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@200;300;400;500&display=swap" rel="stylesheet">
 
@@ -149,8 +145,7 @@
                                 <h2>GameStore</h2>
                             </div>
                             <div class="content">
-                                <p>We provide quality products and are authorized gaming suppliers.We provide quality
-                                    products and are authorized gaming suppliers.</p>
+                                <p>We provide quality products and are authorized gaming suppliers.We provide quality products and are authorized gaming suppliers.</p>
                             </div>
                         </div>
                         <div class="categories col-xl-3 col-lg-3 col-md-6 col-sm-6">
@@ -174,8 +169,7 @@
                         </div>
                         <div class="form-side categories col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <h3>Newsletter</h3>
-                            <p>We provide quality products and are authorized gaming suppliers. We provide quality
-                                products and are authorized gaming suppliers.</p>
+                            <p>We provide quality products and are authorized gaming suppliers. We provide quality products and are authorized gaming suppliers.</p>
                             <input type="text" class="form-control text-center" placeholder="Type Your Email">
                             <div class="btn-wrap text-center">
                                 <a href="#">SUBSCRIBE TO NEWSLETTER</a>
@@ -195,27 +189,23 @@
     </div>
 
     <!-- Login Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Login Form</h5>
-                    <button type="button" class="mt-0 modal-close-button btn btn-primary"
-                        data-bs-dismiss="modal">&times;</button>
+                    <button type="button" class="mt-0 modal-close-button btn btn-primary" data-bs-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="email_address">Email address <span class="text-danger">*</span></label>
-                        <input type="email" class="form-control" id="email_address" name="email_address"
-                            placeholder="Enter email">
+                        <input type="email" class="form-control" id="email_address" name="email_address" placeholder="Enter email">
                         <span class="text-danger"></span>
                     </div>
                     <br>
                     <div class="form-group">
                         <label for="password">Password <span class="text-danger">*</span></label>
-                        <input type="password" class="form-control" id="password" name="password"
-                            placeholder="Password">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                         <span class="text-danger"></span>
                     </div>
                 </div>
@@ -269,7 +259,7 @@
                         <td>
                             <div class="input-group mb-3">
                                 <span class="decrease input-group-text"  onclick='decrease(this,${index})'><span class="fa fa-minus"></span></span>
-                                <input type="number" class="form-control" value="${item.count}" stock=${stock} data-price=${data.price.sale} min="1" id='test${item.count}'>
+                                <input type="number" class="form-control" value="${item.count}" stock=${stock} data-price=${data.price.sale} min="1" max=${stock} id='test${item.count}'>
                                 <span class="increase input-group-text" onclick='increase(this,${index})'><span class="fa fa-plus"></span></span>
                             </div>
                         </td>
@@ -299,8 +289,7 @@
                 $(th).siblings('input').val(++quantity);
                 $(`#stock${index}`).text(--stock_now);
                 changePrice(th);
-            }
-            else
+            } else
                 console.log("out of stock");
             addToCart(JSON.parse(product));
         }
@@ -342,7 +331,7 @@
             $(`#estimated_total`).html("$" + Math.round((newSubTotalPrice + shipping_cost) * 100) / 100);
         }
 
-        $(document).on('change', 'input[type=number]', function () {
+        $(document).on('change', 'input[type=number]', function() {
             if (parseInt($(this).val()) < 1) {
                 $(this).val(1);
             }
