@@ -50,6 +50,7 @@ exports.fetchSingleProduct = (req, res) => {
 exports.addProduct = (req, res) => {
     try {
         let reqBody = req.body;
+        let src = reqBody.img_src;
         let id = reqBody.product_id;
         // add new record
         if (id == "" || id == undefined || id == null) {
@@ -61,7 +62,7 @@ exports.addProduct = (req, res) => {
             newId++;
 
             let item = setProductItem(reqBody);
-            item.id = newId.toString();
+            item.id = newId.toString(); 
             item.img.src = "assets/images/category/default.jpg";
 
             productsJSON.push(item);
@@ -76,12 +77,12 @@ exports.addProduct = (req, res) => {
                 if (item.id == id) {
                     item = setProductItem(reqBody);
                     item.id = id;
-                    item.img.src = src;
+                    item.img.src = src; 
                 }
                 returnData.push(item);
             });
             let return_json = JSON.stringify(returnData);
-            fs.writeFileSync(productJSONPath, return_json);
+            fs.writeFileSync(productJSONPath, return_json); 
         }
 
         productsJSON = JSON.parse(fs.readFileSync(productJSONPath)); // sync the updated file

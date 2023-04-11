@@ -1,7 +1,6 @@
 window.onload = function () {
   cartCounter();
   fetchLoginData();
-  // getCategories();
 };
 
 cartCounter = () => {
@@ -68,25 +67,25 @@ checkAndSetItemToCart = (item = null) => {
     }
   }
 
-  if (added) console.log("added");
-  // $.toast({
-  //   heading: "Item Adeed",
-  //   text: "Item get successfully added to the cart",
-  //   showHideTransition: "slide",
-  //   icon: "success",
-  //   position: "top-right",
-  //   allowToastClose: true,
-  // });
-  else console.log("not in stock");
-  // $.toast({
-  //   heading: "Quantity not in stock",
-  //   text: "Selected quantity is not available",
-  //   showHideTransition: "slide",
-  //   position: "top-right",
-  //   allowToastClose: true,
-  //   bgColor: "red",
-  //   textColor: "white",
-  // });
+  if (added)
+    $.toast({
+      heading: "Item Added",
+      text: "Item get successfully added to the cart",
+      showHideTransition: "slide",
+      icon: "success",
+      position: "bottom-right",
+      allowToastClose: true,
+    });
+  else
+    $.toast({
+      heading: "Quantity not in stock",
+      text: "Selected quantity is not available",
+      showHideTransition: "slide",
+      position: "bottom-right",
+      allowToastClose: true,
+      bgColor: "red",
+      textColor: "white",
+    });
 
   localStorage.setItem("cart_items", JSON.stringify(cartItems));
 

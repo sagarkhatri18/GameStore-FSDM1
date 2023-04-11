@@ -292,9 +292,9 @@
 
         increase = (th, index) => {
             let product = $(`#stock${index}`).attr("game-item");
-            let stock = parseInt($(th).siblings('input').attr("stock"));
             let quantity = parseInt($(th).siblings('input').val());
             let stock_now = parseInt($(`#stock${index}`).text());
+            let stock = parseInt($(th).siblings('input').attr("stock"));
             if (quantity < stock) {
                 $(th).siblings('input').val(++quantity);
                 $(`#stock${index}`).text(--stock_now);
