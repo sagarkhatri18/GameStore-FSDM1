@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon app.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run start",
+    "deploy": "gh-pages -d start"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
